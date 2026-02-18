@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { BaseInput } from '@/shared/ui';
 import SearchIcon from '@/shared/ui/icon/SearchIcon';
 import { useAuth } from '@/features/auth';
