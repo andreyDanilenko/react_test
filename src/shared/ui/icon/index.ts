@@ -6,3 +6,5 @@ export { default as MailIcon } from './MailIcon';
 export { default as PlusCircleIcon } from './PlusCircleIcon';
 export { default as PlusIcon } from './PlusIcon';
 export { default as UserIcon } from './UserIcon';
+export { default as CloseIcon } from './CloseIcon';
+
