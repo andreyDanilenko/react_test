@@ -1,0 +1,13 @@
+.InputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+    width: 100%;
+}
+
+.InputGroup__Label {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-text-title);
+}
