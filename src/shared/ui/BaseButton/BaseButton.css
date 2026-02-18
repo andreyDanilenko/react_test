@@ -1,0 +1,55 @@
+.BaseButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-family: var(--font-family);
+    border-radius: var(--radius-m);
+    border: none;
+    background: none;
+}
+
+.btn--primary,
+.btn--ghost {
+    background: var(--button-bg-color);
+    color: var(--button-text-inverse);
+    padding: var(--button-padding);
+    gap: var(--button-gap);
+    width: 100%;
+}
+
+.btn--with-border {
+    border: 1px solid var(--button-border-color);
+}
+
+.btn--link {
+    color: var(--button-bg-color);
+    font-weight: 600;
+    padding: 0 4px;
+}
+
+.btn--icon-primary {
+    background: var(--button-bg-color);
+    color: #FFFFFF;
+    border-radius: 23px;
+    padding: 2px 14px;
+}
+
+.btn--icon-gray {
+    color: var(--color-icon-gray);
+    background: var(--color-gray-light);
+    padding: 8px;
+}
+
+.btn__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.btn--sm { font-size: 14px; padding: 8px 12px; }
+.btn--md { font-size: var(--button-font-size); }
+.btn--lg { font-size: 20px; padding: 20px; }

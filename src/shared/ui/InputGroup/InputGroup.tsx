@@ -1,4 +1,4 @@
-import React, { ReactNode, InputHTMLAttributes } from 'react';
+import React, { type ReactNode, type InputHTMLAttributes } from 'react';
 import CustomInput from '../BaseInput/BaseInput';
 import './InputGroup.css';
 

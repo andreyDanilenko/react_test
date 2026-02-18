@@ -1,4 +1,4 @@
-import React, { ReactNode, InputHTMLAttributes } from 'react';
+import React, { type ReactNode, type InputHTMLAttributes } from 'react';
 import './BaseInput.css';
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {

@@ -5,12 +5,10 @@
     padding: var(--spacing-input-padding);
     gap: var(--gap-medium);
     width: 100%;
-    height: var(--size-input-height);
     background: var(--color-bg-main);
     border: var(--size-border-input) solid var(--color-border-light);
     border-radius: var(--radius-m);
     transition: border-color var(--transition-fast);
-    box-sizing: border-box;
 }
 
 .BaseInput:focus-within {
