@@ -1,0 +1,42 @@
+.BaseInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--spacing-input-padding);
+    gap: var(--gap-medium);
+    width: 100%;
+    height: var(--size-input-height);
+    background: var(--color-bg-main);
+    border: var(--size-border-input) solid var(--color-border-light);
+    border-radius: var(--radius-m);
+    transition: border-color var(--transition-fast);
+    box-sizing: border-box;
+}
+
+.BaseInput:focus-within {
+    border-color: var(--color-primary);
+}
+
+.BaseInput__Icon {
+    color: var(--color-border-icon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.BaseInput__Field {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-text-title);
+    background: transparent;
+}
+
+.BaseInput__Field::placeholder {
+    color: var(--color-placeholder);
+}
