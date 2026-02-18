@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { store } from '../store';
 import AppRouter from '../router/AppRouter';
+import { setAuthStore } from '@/shared/api/authApi';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,13 +16,19 @@ const queryClient = new QueryClient({
   },
 });
 
-const AppProvider: React.FC = () => (
-  <ReduxProvider store={store}>
-    <QueryClientProvider client={queryClient}>
-      <AppRouter />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  </ReduxProvider>
-);
+const AppProvider: React.FC = () => {
+  useEffect(() => {
+    setAuthStore(store.getState.bind(store), store.dispatch);
+  }, []);
+
+  return (
+    <ReduxProvider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <AppRouter />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </ReduxProvider>
+  );
+};
 
 export default AppProvider;

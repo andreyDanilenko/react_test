@@ -7,8 +7,10 @@ import {
   UserIcon,
   LockIcon,
   EyeIcon,
+  CloseIcon,
 } from '@/shared/ui';
-import { authApi } from '@/shared/api';
+import { useLoginMutation } from '@/features/auth';
+import { ROUTES } from '@/app/router/routes';
 import './RegistrationPage.css';
 
 const RegistrationPage: React.FC = () => {
@@ -17,31 +19,29 @@ const RegistrationPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const loginMutation = useLoginMutation();
+
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     if (!username.trim() || !password) {
       setError('Введите логин и пароль');
       return;
     }
-    setLoading(true);
     try {
-      await authApi.login({
+      await loginMutation.mutateAsync({
         username: username.trim(),
         password,
         expiresInMins: 30,
       });
-      navigate('/home');
+      navigate(ROUTES.HOME);
     } catch (err) {
       setError(
         typeof err === 'object' && err !== null && 'response' in err
           ? (err as { response?: { data?: { message?: string } } }).response?.data?.message ?? 'Ошибка входа'
           : 'Ошибка входа'
       );
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -54,8 +54,8 @@ const RegistrationPage: React.FC = () => {
           </div>
 
           <header className="RegistrationPage__Header">
-            <h1 className="RegistrationPage__Title">Регистрация</h1>
-            <p className="RegistrationPage__Subtitle">Создайте новый аккаунт</p>
+            <h1 className="RegistrationPage__Title">Добро пожаловать!</h1>
+            <p className="RegistrationPage__Subtitle">Пожалуйста, авторизируйтесь</p>
           </header>
 
           <form className="RegistrationPage__Form" onSubmit={handleSubmit}>
@@ -68,6 +68,8 @@ const RegistrationPage: React.FC = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               leftIcon={<UserIcon size={24} />}
+              rightIcon={username ? <CloseIcon size={17} /> : undefined}
+              onRightIconClick={() => setUsername('')}
             />
             <InputGroup
               label="Пароль"
@@ -86,7 +88,7 @@ const RegistrationPage: React.FC = () => {
               hasBorder
               className="RegistrationPage__Submit"
             >
-              {loading ? 'Вход…' : 'Зарегистрироваться'}
+              {loginMutation.isPending ? 'Вход…' : 'Войти'}
             </BaseButton>
 
             <div className="RegistrationPage__Divider" role="presentation">
