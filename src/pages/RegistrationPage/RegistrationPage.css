@@ -1,0 +1,132 @@
+.RegistrationPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px;
+}
+
+.RegistrationPage__Card {
+    position: relative;
+    width: var(--width-card);
+    min-height: 716px;
+    background: var(--color-bg-main);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-card);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.RegistrationPage__Inner {
+    width: 100%;
+    max-width: 515px;
+    min-height: 704px;
+    background: linear-gradient(180deg, rgba(35, 35, 35, 0.03) 0%, rgba(35, 35, 35, 0) 50%);
+    border-radius: var(--radius-card-inner);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--padding-card);
+    gap: var(--gap-card);
+}
+
+.RegistrationPage__Logo {
+    flex-shrink: 0;
+}
+
+.RegistrationPage__Logo .LogoBadge {
+    width: var(--size-logo);
+    height: var(--size-logo);
+}
+
+.RegistrationPage__Header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.RegistrationPage__Title {
+    font-weight: var(--font-weight-heading);
+    font-size: var(--font-size-heading);
+    line-height: var(--line-height-heading);
+    letter-spacing: var(--letter-spacing-heading);
+    color: var(--color-text-title);
+    text-align: center;
+}
+
+.RegistrationPage__Subtitle {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    text-align: center;
+    color: var(--color-text-hint);
+}
+
+.RegistrationPage__Form {
+    width: 100%;
+    max-width: var(--width-form);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-form);
+}
+
+.RegistrationPage__Error {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: #c0392b;
+    margin: 0;
+}
+
+.RegistrationPage__Submit {
+    margin-top: 10px;
+    height: 54px;
+    background: var(--button-gradient), var(--button-bg-color);
+    border: 1px solid var(--button-border-color);
+    box-shadow: var(--button-shadow);
+    border-radius: var(--radius-m);
+}
+
+.RegistrationPage__Divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    margin: var(--margin-divider) 0;
+}
+
+.RegistrationPage__DividerLine {
+    flex: 1;
+    height: 0;
+    border: 1px solid var(--color-border-light);
+}
+
+.RegistrationPage__DividerText {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-divider);
+    line-height: var(--line-height-base);
+    color: var(--color-text-light);
+}
+
+.RegistrationPage__Footer {
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-text-muted);
+}
+
+.RegistrationPage__Footer a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+}
+
+.RegistrationPage__Footer a span {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+}

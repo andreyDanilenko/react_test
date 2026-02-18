@@ -1,51 +1,95 @@
 @import "tailwindcss";
 
-
 @theme {
     /* Colors */
-    --color-text-heading: #202020;         /* Заголовки страниц */
-    --color-text-title: #232323;           /* Заголовки секций, названия */
-    --color-text-body: #333333;            /* Основной текст */
-    --color-text-label: #B2B3B9;           /* Подписи, ярлыки */
-    --color-text-hint: #E0E0E0;            /* Подсказки, плейсхолдеры */
-    --color-text-muted: #6C6C6C;           /* Приглушенный текст */
-    --color-text-light: #EBEBEB;           /* Светлый текст */
-    --color-text-extra-light: #9C9C9C;     /* Очень светлый */
-    --color-text-inverse: #FFFFFF;         /* Белый текст на цветном */
-    --color-text-price: #222222;           /* Цена */
-    --color-text-price-secondary: #999999; /* Копейки */
-    --color-text-vendor: #000000;          /* Вендор */
-    --color-text-pagination: #969B9F;      /* Пагинация */
-    
-    /* UI Colors */
-    --color-primary: #242EDB;               /* Основной цвет (фокус, акцент) */
-    --color-border-light: #EDEDED;          /* Светлая граница */
-    --color-border-icon: #C9C9C9;           /* Цвет иконок */
-    --color-bg-main: #FFFFFF;                /* Основной фон */
-    --color-placeholder: #A0A0A0;            /* Плейсхолдер в полях */
-    
+    --color-text-heading: #202020;
+    --color-text-title: #232323;
+    --color-text-body: #333333;
+    --color-text-label: #B2B3B9;
+    --color-text-hint: #E0E0E0;
+    --color-text-muted: #6C6C6C;
+    --color-text-light: #EBEBEB;
+    --color-text-extra-light: #9C9C9C;
+    --color-text-inverse: #FFFFFF;
+    --color-text-price: #222222;
+    --color-text-price-secondary: #999999;
+    --color-text-vendor: #000000;
+    --color-text-pagination: #969B9F;
+
+    --color-primary: #242EDB;
+    --color-border-light: #EDEDED;
+    --color-border-icon: #C9C9C9;
+    --color-bg-main: #FFFFFF;
+    --color-bg-page: #F5F5F5;
+    --color-placeholder: #A0A0A0;
+    --color-icon-gray: #C9C9C9;
+    --color-gray-light: #EDEDED;
+
+    /* Logo */
+    --gradient-logo: linear-gradient(360deg, rgba(35, 35, 35, 0) 50%, rgba(35, 35, 35, 0.06) 100%), #FFFFFF;
+    --shadow-logo: 0px 0px 0px 2px #FFFFFF, 0px 12px 8px rgba(0, 0, 0, 0.03);
+    --size-logo: 52px;
+    --gap-logo: 10px;
+
     /* Typography */
     --font-family: 'Inter', sans-serif;
     --font-size-base: 18px;
+    --font-size-heading: 40px;
+    --font-size-divider: 16px;
     --line-height-base: 150%;
+    --line-height-heading: 110%;
+    --letter-spacing-heading: -0.015em;
     --font-weight-medium: 500;
-    
+    --font-weight-heading: 600;
+
     /* Spacing */
-    --spacing-input-padding: 14px 16px;      /* Паддинг инпута */
+    --spacing-input-padding: 14px 16px;
     --gap-small: 6px;
-    --gap-medium: 14px;                       /* Гэп в инпуте */
-    
+    --gap-medium: 14px;
+    --gap-form: 20px;
+    --gap-card: 32px;
+    --padding-card: 48px;
+    --margin-divider: 10px;
+
     /* Sizes */
-    --size-input-height: 55px;                /* Высота инпута */
-    --size-border-input: 1.5px;               /* Толщина границы */
-    
+    --size-input-height: 55px;
+    --size-border-input: 1.5px;
+    --width-card: 527px;
+    --width-form: 399px;
+
     /* Radii */
-    --radius-m: 12px;                          /* Скругление инпута */
+    --radius-m: 12px;
     --radius-full: 100px;
-    
+    --radius-card: 40px;
+    --radius-card-inner: 34px;
+
     /* Shadows */
     --shadow-badge: 0px 12px 8px rgba(0, 0, 0, 0.03);
-    
+    --shadow-card: 0px 24px 32px rgba(0, 0, 0, 0.04);
+
     /* Transitions */
     --transition-fast: 0.2s ease;
+    --transition-base: 0.2s ease;
+
+    /* Button */
+    --button-padding: 12px;
+    --button-gap: 8px;
+    --button-font-weight: 600;
+    --button-font-size: 18px;
+    --button-line-height: 120%;
+    --button-letter-spacing: -0.01em;
+    --button-text-color: #FFFFFF;
+    --button-text-inverse: #FFFFFF;
+    --button-bg-color: #242EDB;
+    --button-border-color: #367AFF;
+    --button-gradient: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 100%);
+    --button-shadow: 0px 8px 8px rgba(54, 122, 255, 0.03), inset 0px -2px 0px 1px rgba(0, 0, 0, 0.08);
+}
+
+@layer base {
+    body {
+        font-family: var(--font-family);
+        background: var(--color-bg-page);
+        min-height: 100vh;
+    }
 }
