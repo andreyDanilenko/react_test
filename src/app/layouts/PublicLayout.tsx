@@ -1,4 +1,13 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '@/features/auth';
+import { ROUTES } from '@/app/router/routes';
 
-export const PublicLayout: React.FC = () => <Outlet />;
+export const PublicLayout: React.FC = () => {
+  const { isAuthenticated, isRehydrated } = useAuth();
+
+  if (!isRehydrated) return null;
+  if (isAuthenticated) return <Navigate to={ROUTES.HOME} replace />;
+
+  return <Outlet />;
+};
