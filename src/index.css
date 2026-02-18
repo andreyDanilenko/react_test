@@ -21,6 +21,8 @@
     --color-border-icon: #C9C9C9;
     --color-bg-main: #FFFFFF;
     --color-bg-page: #F5F5F5;
+    --color-bg-input: #F3F3F3;
+    --color-bg-input-focus: #EBEBEB;
     --color-placeholder: #A0A0A0;
     --color-icon-gray: #C9C9C9;
     --color-gray-light: #EDEDED;
@@ -35,9 +37,11 @@
     --font-family: 'Inter', sans-serif;
     --font-size-base: 18px;
     --font-size-heading: 40px;
+    --font-size-navbar-title: 24px;
     --font-size-divider: 16px;
     --line-height-base: 150%;
     --line-height-heading: 110%;
+    --line-height-navbar-title: 45px;
     --letter-spacing-heading: -0.015em;
     --font-weight-medium: 500;
     --font-weight-heading: 600;
@@ -48,17 +52,26 @@
     --gap-medium: 14px;
     --gap-form: 20px;
     --gap-card: 32px;
+    --gap-nav: 24px;
+    --gap-navbar-logo: 18px;
+    --gap-navbar-menu-sm: 40px;
     --padding-card: 48px;
+    --padding-navbar: 30px;
+    --padding-navbar-sm: 20px;
+    --padding-navbar-mobile: 15px;
     --margin-divider: 10px;
 
     /* Sizes */
     --size-input-height: 55px;
+    --size-search-height: 48px;
     --size-border-input: 1.5px;
     --width-card: 527px;
     --width-form: 399px;
 
     /* Radii */
+    --radius-s: 8px;
     --radius-m: 12px;
+    --radius-navbar: 10px;
     --radius-full: 100px;
     --radius-card: 40px;
     --radius-card-inner: 34px;
@@ -66,6 +79,8 @@
     /* Shadows */
     --shadow-badge: 0px 12px 8px rgba(0, 0, 0, 0.03);
     --shadow-card: 0px 24px 32px rgba(0, 0, 0, 0.04);
+    --shadow-navbar: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-input-focus: inset 0 0 0 2px rgba(36, 46, 219, 0.1);
 
     /* Transitions */
     --transition-fast: 0.2s ease;
