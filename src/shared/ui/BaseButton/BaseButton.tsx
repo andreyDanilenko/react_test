@@ -23,22 +23,20 @@ const Button: React.FC<ButtonProps> = ({
   hasBorder = false,
   onClick,
 }) => {
-  // Базовые стили для всех кнопок
   const baseStyles = "BaseButton";
   
-  // Логика подбора классов
   const getVariantClass = () => {
     switch (variant) {
       case 'link': 
-        return 'btn--link'; // "Создать" (просто текст)
+        return 'btn--link';
       case 'icon-only': 
-        return 'btn--icon-primary'; // Синяя кнопка-квадрат с белой иконкой
+        return 'btn--icon-primary';
       case 'icon-gray': 
-        return 'btn--icon-gray'; // Просто серая иконка
+        return 'btn--icon-gray'; 
       case 'ghost':
         return 'btn--ghost';
       default: 
-        return 'btn--primary'; // Базовая синяя
+        return 'btn--primary';
     }
   };
 
