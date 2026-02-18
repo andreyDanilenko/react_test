@@ -1,9 +1,97 @@
 .HomePage {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 24px;
+  padding: var(--gap-form);
+  background-color: var(--color-bg-page);
+}
+
+.HomePage__Navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--padding-navbar);
+  gap: var(--margin-divider);
+  width: 100%;
+  max-width: 1920px;
+  height: 105px;
+  background: var(--color-bg-main);
+  border-radius: var(--radius-navbar);
+  box-shadow: var(--shadow-navbar);
+  flex: none;
+  margin-bottom: var(--gap-card);
+}
+
+.HomePage__NavbarLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: var(--gap-navbar-logo);
+  flex: none;
+}
+
+.HomePage__NavbarTitle {
+  font-family: 'Cairo', var(--font-family);
+  font-weight: var(--font-weight-heading);
+  font-size: var(--font-size-navbar-title);
+  line-height: var(--line-height-navbar-title);
+  color: var(--color-text-heading);
+  white-space: nowrap;
+}
+
+.HomePage__NavbarMenu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  flex: 1;
+  height: 100px;
+}
+
+.HomePage__SearchWrap {
+  width: 100%;
+  max-width: 1023px;
+  margin: 0 auto;
+}
+
+.HomePage__SearchWrap .BaseInput {
+  width: 100%;
+  height: var(--size-search-height);
+  background: var(--color-bg-input);
+  border-radius: var(--radius-s);
+  border: none;
+}
+
+.HomePage__SearchWrap .BaseInput:focus-within {
+  background: var(--color-bg-input-focus);
+  box-shadow: var(--shadow-input-focus);
+}
+
+.HomePage__NavActions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-nav);
+}
+
+.HomePage__NavLink {
+  font-family: var(--font-family);
+  font-size: var(--font-size-divider);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-heading);
+  text-decoration: none;
+  transition: color var(--transition-base);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.HomePage__NavLink:hover {
+  color: var(--color-primary);
 }
 
 .HomePage__Card {
@@ -36,7 +124,40 @@
   text-align: center;
 }
 
-.HomePage__Logout {
-  width: auto;
-  min-width: 160px;
+@media (max-width: 1600px) {
+  .HomePage__Navbar {
+    padding: 0 var(--padding-navbar-sm);
+  }
+  .HomePage__NavbarMenu {
+    gap: var(--gap-navbar-menu-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  .HomePage__Navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: var(--padding-navbar-mobile);
+    gap: var(--margin-divider);
+  }
+  .HomePage__NavbarLogo {
+    order: 1;
+  }
+  .HomePage__NavbarMenu {
+    order: 3;
+    width: 100%;
+    margin-top: var(--margin-divider);
+    gap: var(--margin-divider);
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .HomePage__SearchWrap {
+    width: 100%;
+    order: 1;
+    max-width: none;
+  }
+  .HomePage__NavActions {
+    order: 2;
+    margin-left: auto;
+  }
 }

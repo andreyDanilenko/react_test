@@ -1,33 +1,37 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BaseButton } from '@/shared/ui';
+import { Link } from 'react-router-dom';
+import { BaseInput } from '@/shared/ui';
+import SearchIcon from '@/shared/ui/icon/SearchIcon';
 import { useAuth } from '@/features/auth';
-import { ROUTES } from '@/app/router/routes';
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
-  const navigate = useNavigate();
-  const { user, logout } = useAuth();
-
-  const handleLogout = () => {
-    logout();
-    navigate(ROUTES.ROOT);
-  };
+  const { user } = useAuth();
 
   return (
     <div className="HomePage">
+      <nav className="HomePage__Navbar">
+        <div className="HomePage__NavbarLogo">
+          <span className="HomePage__NavbarTitle">Товары</span>
+        </div>
+
+        <div className="HomePage__NavbarMenu">
+          <div className="HomePage__SearchWrap">
+            <BaseInput
+              variant="filled"
+              placeholder="Поиск товаров, категорий..."
+              icon={<SearchIcon />}
+              aria-label="Поиск"
+            />
+          </div>
+        </div>
+      </nav>
+
       <div className="HomePage__Card">
         <h1 className="HomePage__Title">Главная</h1>
         <p className="HomePage__Subtitle">
           {user ? `${user.firstName} ${user.lastName}, вы успешно вошли` : 'Вы успешно вошли в аккаунт'}
         </p>
-        <BaseButton
-          variant="ghost"
-          className="HomePage__Logout"
-          onClick={handleLogout}
-        >
-          Выйти
-        </BaseButton>
       </div>
     </div>
   );
