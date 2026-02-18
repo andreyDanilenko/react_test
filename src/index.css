@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+
+@theme {
+    /* Colors */
+    --color-text-heading: #202020;         /* Заголовки страниц */
+    --color-text-title: #232323;           /* Заголовки секций, названия */
+    --color-text-body: #333333;            /* Основной текст */
+    --color-text-label: #B2B3B9;           /* Подписи, ярлыки */
+    --color-text-hint: #E0E0E0;            /* Подсказки, плейсхолдеры */
+    --color-text-muted: #6C6C6C;           /* Приглушенный текст */
+    --color-text-light: #EBEBEB;           /* Светлый текст */
+    --color-text-extra-light: #9C9C9C;     /* Очень светлый */
+    --color-text-inverse: #FFFFFF;         /* Белый текст на цветном */
+    --color-text-price: #222222;           /* Цена */
+    --color-text-price-secondary: #999999; /* Копейки */
+    --color-text-vendor: #000000;          /* Вендор */
+    --color-text-pagination: #969B9F;      /* Пагинация */
+    
+    /* UI Colors */
+    --color-primary: #242EDB;               /* Основной цвет (фокус, акцент) */
+    --color-border-light: #EDEDED;          /* Светлая граница */
+    --color-border-icon: #C9C9C9;           /* Цвет иконок */
+    --color-bg-main: #FFFFFF;                /* Основной фон */
+    --color-placeholder: #A0A0A0;            /* Плейсхолдер в полях */
+    
+    /* Typography */
+    --font-family: 'Inter', sans-serif;
+    --font-size-base: 18px;
+    --line-height-base: 150%;
+    --font-weight-medium: 500;
+    
+    /* Spacing */
+    --spacing-input-padding: 14px 16px;      /* Паддинг инпута */
+    --gap-small: 6px;
+    --gap-medium: 14px;                       /* Гэп в инпуте */
+    
+    /* Sizes */
+    --size-input-height: 55px;                /* Высота инпута */
+    --size-border-input: 1.5px;               /* Толщина границы */
+    
+    /* Radii */
+    --radius-m: 12px;                          /* Скругление инпута */
+    --radius-full: 100px;
+    
+    /* Shadows */
+    --shadow-badge: 0px 12px 8px rgba(0, 0, 0, 0.03);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+}
