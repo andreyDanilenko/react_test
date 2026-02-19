@@ -3,6 +3,11 @@ import { BaseInput } from '@/shared/ui';
 import SearchIcon from '@/shared/ui/icon/SearchIcon';
 import { useAuth, useAuthMeQuery } from '@/features/auth/hooks';
 import { useAppToast } from '@/shared/lib/hooks/useAppToast';
+import { ConfirmModal } from '@/shared/ui/ConfirmModal/ConfirmModal';
+import { AddProductModal } from '@/features/products';
+
+import { useModal } from '@/shared/lib/modal';
+
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
@@ -12,7 +17,37 @@ const HomePage: React.FC = () => {
   const displayUser = meUser ?? user;
 
 
+  const { openModal } = useModal();
   const toast = useAppToast();
+
+  const handleDeleteItem = (id: string) => {
+    void id; // TODO: use for API call
+    openModal({
+      component: ConfirmModal,
+      props: {
+        title: 'Удаление',
+        message: 'Вы уверены, что хотите удалить этот элемент?',
+        onConfirm: async () => {
+          // await deleteItem(id);
+          toast.success('Элемент удален');
+        },
+      },
+      options: {
+        size: 'sm',
+      },
+    });
+  };
+
+  const handleOpenAddProduct = () => {
+    openModal({
+      component: AddProductModal,
+      options: {
+        size: 'md',
+        closeOnOverlayClick: false,
+      },
+    });
+  };
+
 
   const handleSuccess = () => {
     toast.success('Товар успешно добавлен в корзину!', {
@@ -119,6 +154,15 @@ const HomePage: React.FC = () => {
         style={{ backgroundColor: '#6c5ce7', color: 'white' }}
       >
         Promise
+      </button>
+    </div>
+
+    <div>
+      <button onClick={() => handleDeleteItem('123')}>
+        Удалить
+      </button>
+      <button onClick={handleOpenAddProduct}>
+        Добавить
       </button>
     </div>
     </div>

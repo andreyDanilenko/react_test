@@ -11,8 +11,7 @@
     background: none;
 }
 
-.btn--primary,
-.btn--ghost {
+.btn--primary {
     background: var(--button-bg-color);
     color: var(--button-text-inverse);
     padding: var(--button-padding);
@@ -20,8 +19,41 @@
     width: 100%;
 }
 
+.btn--secondary {
+    background: var(--button-bg-color);
+    color: var(--button-text-inverse);
+    padding: var(--button-padding);
+    gap: var(--button-gap);
+    width: 100%;
+    border: none;
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--color-text-body);
+    padding: var(--button-padding);
+    gap: var(--button-gap);
+    width: 100%;
+}
+
+.btn--ghost:hover:not(:disabled) {
+    background: var(--color-gray-light);
+}
+
 .btn--with-border {
     border: 1px solid var(--button-border-color);
+}
+
+.btn--icon-transparent {
+    padding: 8px;
+    color: var(--color-text-muted);
+    background: transparent;
+    border-radius: var(--radius-full);
+}
+
+.btn--icon-transparent:hover:not(:disabled) {
+    color: var(--color-text-body);
+    background: var(--color-gray-light);
 }
 
 .btn--link {

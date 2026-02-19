@@ -4,12 +4,17 @@ import { store } from '@/app/store';
 import AppRouter from '@/app/router/AppRouter';
 import { useAuthRehydration } from '@/features/auth/lib';
 import { ToastProvider } from './ToastProvider';
+import { ModalProvider } from '@/shared/lib/modal';
+import { ModalRenderer } from '@/shared/ui/modal';
 
-export const AppProvider: React.FC = () => (
+const AppProvider: React.FC = () => (
   <ReduxProvider store={store}>
-    <ToastProvider>
-      <AppWithRehydration />
-    </ToastProvider>
+      <ModalProvider>
+        <ToastProvider>
+          <AppWithRehydration />
+          <ModalRenderer />
+        </ToastProvider>
+      </ModalProvider>
   </ReduxProvider>
 );
 

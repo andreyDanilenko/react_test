@@ -84,6 +84,7 @@ const RegistrationPage: React.FC = () => {
             </label>
 
             <BaseButton
+              type="submit"
               variant="primary"
               hasBorder
               className="RegistrationPage__Submit"
