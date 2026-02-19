@@ -5,6 +5,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { store } from '../store';
 import AppRouter from '../router/AppRouter';
 import { setAuthStore } from '@/shared/api/authApi';
+import { setTokens, logout } from '@/features/auth/model/authSlice';
+import { useAuthRehydration } from '@/features/auth/lib';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,17 +20,25 @@ const queryClient = new QueryClient({
 
 const AppProvider: React.FC = () => {
   useEffect(() => {
-    setAuthStore(store.getState.bind(store), store.dispatch);
+    setAuthStore(store.getState.bind(store), store.dispatch, {
+      setTokens,
+      logout,
+    });
   }, []);
 
   return (
     <ReduxProvider store={store}>
       <QueryClientProvider client={queryClient}>
-        <AppRouter />
+        <AppWithRehydration />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </ReduxProvider>
   );
+};
+
+const AppWithRehydration: React.FC = () => {
+  useAuthRehydration();
+  return <AppRouter />;
 };
 
 export default AppProvider;

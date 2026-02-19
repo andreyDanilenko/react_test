@@ -7,13 +7,20 @@ export const authKeys = {
   me: (token: string | null) => ['auth', 'me', token] as const,
 };
 
+export type LoginMutationPayload = LoginBody & { rememberMe?: boolean };
+
 export function useLoginMutation() {
   const dispatch = useAppDispatch();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (body: LoginBody) => authApi.login(body),
-    onSuccess: (data) => {
+    mutationFn: (payload: LoginMutationPayload) =>
+      authApi.login({
+        username: payload.username,
+        password: payload.password,
+        expiresInMins: payload.expiresInMins,
+      }),
+    onSuccess: (data, variables) => {
       const accessToken = data.accessToken ?? data.token;
       if (!accessToken) return;
       dispatch(
@@ -21,6 +28,7 @@ export function useLoginMutation() {
           user: toUser(data),
           accessToken,
           refreshToken: data.refreshToken,
+          rememberMe: variables.rememberMe ?? true,
         })
       );
       queryClient.setQueryData(authKeys.me(accessToken), toUser(data));
@@ -56,11 +64,18 @@ export function useRefreshMutation() {
 export function useAuth() {
   const user = useAppSelector((s) => s.auth.user);
   const accessToken = useAppSelector((s) => s.auth.accessToken);
+  const isRehydrated = useAppSelector((s) => s.auth._rehydrated);
   const dispatch = useAppDispatch();
 
   const logout = () => {
     dispatch(logoutAction());
   };
 
-  return { user, accessToken, isAuthenticated: Boolean(accessToken), logout };
+  return {
+    user,
+    accessToken,
+    isAuthenticated: Boolean(accessToken),
+    isRehydrated,
+    logout,
+  };
 }

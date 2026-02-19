@@ -5,6 +5,16 @@
   min-height: 100vh;
   padding: var(--gap-form);
   background-color: var(--color-bg-page);
+  animation: HomePage-fadeIn 0.35s ease-out;
+}
+
+@keyframes HomePage-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .HomePage__Navbar {

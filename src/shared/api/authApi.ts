@@ -50,14 +50,25 @@ export const authClient: AxiosInstance = axios.create({
 });
 
 type GetState = () => { auth: { accessToken: string | null; refreshToken: string | null } };
-type Dispatch = (action: { type: string; payload?: unknown }) => void;
+type Dispatch = (action: unknown) => void;
+
+export interface AuthStoreActions {
+  setTokens: (payload: { accessToken: string; refreshToken?: string }) => unknown;
+  logout: () => unknown;
+}
 
 let authGetState: GetState | null = null;
 let authDispatch: Dispatch | null = null;
+let authActions: AuthStoreActions | null = null;
 
-export function setAuthStore(getState: GetState, dispatch: Dispatch): void {
+export function setAuthStore(
+  getState: GetState,
+  dispatch: Dispatch,
+  actions: AuthStoreActions
+): void {
   authGetState = getState;
   authDispatch = dispatch;
+  authActions = actions;
 }
 
 authClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
@@ -81,7 +92,10 @@ authClient.interceptors.response.use(
     }
     originalRequest._retry = true;
     const refreshToken = authGetState?.()?.auth?.refreshToken;
-    if (!refreshToken || !authDispatch) {
+    if (!refreshToken || !authDispatch || !authActions) {
+      if (authDispatch && authActions) {
+        authDispatch(authActions.logout());
+      }
       return Promise.reject(error);
     }
     try {
@@ -90,13 +104,18 @@ authClient.interceptors.response.use(
         expiresInMins: 30,
       });
       const data = res.data;
-      authDispatch({
-        type: 'auth/setTokens',
-        payload: { accessToken: data.accessToken, refreshToken: data.refreshToken },
-      });
+      if (authDispatch && authActions) {
+        authDispatch(authActions.setTokens({
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
+        }));
+      }
       originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
       return authClient.request(originalRequest);
     } catch (refreshError) {
+      if (authDispatch && authActions) {
+        authDispatch(authActions.logout());
+      }
       return Promise.reject(refreshError);
     }
   }

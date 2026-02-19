@@ -12,8 +12,12 @@ export const RequireAuthGuard: React.FC<RequireAuthGuardProps> = ({
   children,
   redirectTo = ROUTES.ROOT,
 }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isRehydrated } = useAuth();
+  
 
+  if (!isRehydrated) {
+    return null;
+  }
   if (!isAuthenticated) {
     return <Navigate to={redirectTo} replace />;
   }
