@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# React Test Project [[RU]](https://github.com/andreyDanilenko/react_test/blob/main/README.ru.md)
+ 
+Test assignment: product catalog with authorization, sorting, and cart using DummyJSON API.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Quick Start
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔑 Test Credentials
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+Username: emilys
+Password: emilyspass
+```
+
+## 📦 Tech Stack
+
+- **React 19** + TypeScript
+- **Redux Toolkit** + RTK Query
+- **React Router v7**
+- **Tailwind CSS v4** + custom design tokens
+- **Vite**
+- **FSD** (Feature-Sliced Design)
+
+## ⚙️ Functional Requirements
+
+### Login Form
+- Field validation (required fields)
+- Error handling: display API error messages under fields
+- Session persistence:
+  - "Remember me" checked → token in localStorage (persists after browser close)
+  - "Remember me" unchecked → token in sessionStorage (cleared on tab close)
+
+### Products List
+- Table matching Figma design
+- Loading progress bar
+- Data fetched from DummyJSON API
+- Sorting by price and rating (sort state persists)
+
+### Add Product
+- Modal form opens on "Add" button click
+- Fields: title, price, vendor, SKU
+- Toast notification on successful add (mock, no API call)
+
+### Interface Logic
+- Products with rating < 3 highlighted in red
+- Search products via DummyJSON API
+
+## 🔗 API Endpoints
+
+- Auth: `https://dummyjson.com/auth/login`
+- Products: `https://dummyjson.com/products`
+- Search: `https://dummyjson.com/products/search?q=...`
