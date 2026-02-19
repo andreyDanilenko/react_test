@@ -10,3 +10,5 @@ export { default as CloseIcon } from './CloseIcon';
 export { default as CaretLeftIcon } from './CaretLeftIcon';
 export { default as CaretRightIcon } from './CaretRightIcon';
 export { default as RefreshIcon } from './RefreshIcon';
+export { default as DotsCircleIcon } from './DotsCircleIcon';
+export { default as SearchIcon } from './SearchIcon';

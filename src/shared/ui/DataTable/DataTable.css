@@ -1,4 +1,3 @@
-/* Карточка таблицы */
 .DataTable__Card {
   display: flex;
   flex-direction: column;
@@ -134,7 +133,6 @@
   border-collapse: collapse;
 }
 
-/* Колонка чекбокса — по содержимому, не сжимается ниже чекбокса */
 .DataTable__ColCheckbox {
   width: 1%;
   min-width: 50px;
@@ -261,10 +259,6 @@
   color: var(--color-text-price-secondary);
 }
 
-.DataTable__Td--rating {
-  /* для cellClassName */
-}
-
 .DataTable__Td--actions {
   padding: 14px 8px;
 }
@@ -325,54 +319,20 @@
   gap: 12px;
 }
 
-.DataTable__BtnQuickAdd {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Размеры кнопок экшенов в строке (оформление из BaseButton) */
+.DataTable__RowActionQuickAdd {
   width: 52px;
+  min-width: 52px;
   height: 27px;
-  background: var(--color-primary);
-  border-radius: 23px;
-  border: none;
-  cursor: pointer;
-  transition: opacity var(--transition-base);
-  color: var(--color-text-inverse);
+  padding: 0;
 }
 
-.DataTable__BtnQuickAdd:hover {
-  opacity: 0.9;
-}
-
-.DataTable__BtnQuickAdd svg {
-  width: 20px;
-  height: 20px;
-}
-
-.DataTable__BtnMore {
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background var(--transition-base);
-  color: var(--color-text-label);
-}
-
-.DataTable__BtnMore:hover {
-  background: var(--color-gray-light);
-}
-
-.DataTable__BtnMore svg {
-  width: 32px;
-  height: 32px;
-}
-
-.DataTable__BtnMore svg circle {
-  fill: currentColor;
+.DataTable__RowActionMore {
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+  padding: 0;
+  color: var(--color-text-label); /* UIKit icon #B2B3B9 */
 }
 
 .DataTable__Message {
