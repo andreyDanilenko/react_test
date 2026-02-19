@@ -1,8 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { setAuth, logout as logoutAction } from '@/features/auth/model/authSlice';
 import { authApi } from '@/features/auth/api/authApi';
-import { toUser } from '@/shared/api/authTypes';
-import type { LoginBody } from '@/shared/api/authTypes';
+import { toUser, type LoginBody } from '@/features/auth/model';
 
 export type LoginMutationPayload = LoginBody & { rememberMe?: boolean };
 

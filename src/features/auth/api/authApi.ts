@@ -1,10 +1,7 @@
+import type { User } from '@/entities/user';
 import { baseApi } from '@/shared/api/baseApi';
-import {
-  toUser,
-  type AuthUser,
-  type LoginBody,
-  type LoginResponse,
-} from '@/shared/api/authTypes';
+import type { LoginBody, LoginResponse } from '@/features/auth/model';
+import { toUser } from '@/features/auth/model';
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -13,13 +10,11 @@ export const authApi = baseApi.injectEndpoints({
       LoginBody & { rememberMe?: boolean }
     >({
       query: (body) => {
-        // rememberMe used in auth hooks, not sent to API
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars -- stripped from request body
         const { rememberMe, ...rest } = body;
         return { url: '/auth/login', method: 'POST', body: rest };
       },
     }),
-    me: builder.query<AuthUser, void>({
+    me: builder.query<User, void>({
       query: () => ({ url: '/auth/me' }),
     }),
   }),
@@ -27,5 +22,4 @@ export const authApi = baseApi.injectEndpoints({
 });
 
 export const { useLoginMutation, useMeQuery } = authApi;
-
 export { toUser };

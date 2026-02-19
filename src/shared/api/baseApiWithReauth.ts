@@ -6,8 +6,8 @@ import {
   type QueryReturnValue,
 } from '@reduxjs/toolkit/query/react';
 import { setTokens, logout } from '@/features/auth/model/authSlice';
-import { AUTH_BASE_URL } from '@/shared/api/authTypes';
-import type { RefreshResponse } from '@/shared/api/authTypes';
+import { AUTH_BASE_URL } from '@/shared/api/constants';
+import type { RefreshResponse } from '@/shared/api/reauthTypes';
 
 export type ApiErrorBody = {
   message?: string;

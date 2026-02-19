@@ -1,5 +1,6 @@
+import type { Product } from '@/entities/product';
 import { baseApi } from '@/shared/api/baseApi';
-import type { Product, ProductsResponse } from '@/shared/api/productsTypes';
+import type { ProductsResponse } from './types';
 
 export const productsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
