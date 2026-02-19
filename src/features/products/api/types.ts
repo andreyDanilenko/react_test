@@ -6,3 +6,10 @@ export interface ProductsResponse {
   skip: number;
   limit: number;
 }
+
+export interface CreateProductBody {
+  title: string;
+  price: number;
+  brand: string;
+  article?: string;
+}
