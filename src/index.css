@@ -27,6 +27,11 @@
     --color-icon-gray: #C9C9C9;
     --color-gray-light: #EDEDED;
 
+    --color-success: #10b981;
+    --color-error: #ef4444;
+    --color-warning: #f59e0b;
+    --color-info: #242EDB;
+
     /* Logo */
     --gradient-logo: linear-gradient(360deg, rgba(35, 35, 35, 0) 50%, rgba(35, 35, 35, 0.06) 100%), #FFFFFF;
     --shadow-logo: 0px 0px 0px 2px #FFFFFF, 0px 12px 8px rgba(0, 0, 0, 0.03);
@@ -101,10 +106,48 @@
     --button-shadow: 0px 8px 8px rgba(54, 122, 255, 0.03), inset 0px -2px 0px 1px rgba(0, 0, 0, 0.08);
 }
 
+[data-theme="dark"] {
+    --color-text-heading: #FFFFFF;
+    --color-text-title: #F0F0F0;
+    --color-text-body: #E0E0E0;
+    --color-text-label: #A0A0A0;
+    --color-text-hint: #707070;
+    --color-text-muted: #909090;
+    --color-text-light: #2A2A2A;
+    --color-text-extra-light: #404040;
+    --color-text-inverse: #202020;
+    --color-text-price: #FFFFFF;
+    --color-text-price-secondary: #B0B0B0;
+    --color-text-vendor: #FFFFFF;
+    --color-text-pagination: #808080;
+
+    --color-primary: #4A53E3;
+    --color-border-light: #404040;
+    --color-border-icon: #505050;
+    --color-bg-main: #1A1A1A;
+    --color-bg-page: #121212;
+    --color-bg-input: #2A2A2A;
+    --color-bg-input-focus: #353535;
+    --color-placeholder: #707070;
+    --color-icon-gray: #606060;
+    --color-gray-light: #2A2A2A;
+
+    --color-success: #34D399;
+    --color-error: #F87171;
+    --color-warning: #FBBF24;
+    --color-info: #4A53E3;
+
+    --shadow-card: 0px 24px 32px rgba(0, 0, 0, 0.4);
+    --shadow-navbar: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-badge: 0px 12px 8px rgba(0, 0, 0, 0.2);
+}
+
 @layer base {
     body {
         font-family: var(--font-family);
         background: var(--color-bg-page);
         min-height: 100vh;
+        color: var(--color-text-body);
+        transition: background-color var(--transition-base), color var(--transition-base);
     }
 }
