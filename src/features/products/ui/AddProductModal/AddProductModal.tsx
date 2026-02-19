@@ -93,7 +93,8 @@ export const AddProductModal: React.FC<AddProductModalProps> = ({ onClose }) => 
         <div className="AddProductModal__Actions">
           <BaseButton
             type="button"
-            variant="secondary"
+            variant="ghost"
+            size='md'
             onClick={onClose}
             disabled={loading}
           >
@@ -101,7 +102,8 @@ export const AddProductModal: React.FC<AddProductModalProps> = ({ onClose }) => 
           </BaseButton>
           <BaseButton
             type="submit"
-            variant="primary"
+            size='md'
+            variant="secondary"
             disabled={loading}
           >
             {loading ? 'Добавление...' : 'Добавить'}

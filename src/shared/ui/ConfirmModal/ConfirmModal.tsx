@@ -54,8 +54,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
         <BaseButton
           type="button"
           variant="ghost"
-          size='sm'
-          hasBorder
+          size='md'
           onClick={onClose}
           disabled={loading}
         >
@@ -64,7 +63,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
         <BaseButton
           type="button"
           variant="primary"
-          size='sm'
+          size='md'
           className={confirmButtonClass[variant]}
           onClick={handleConfirm}
           disabled={loading}

@@ -29,7 +29,7 @@
 }
 
 .btn--ghost {
-    background: transparent;
+    background: var(--color-bg-input);
     color: var(--color-text-body);
     padding: var(--button-padding);
     gap: var(--button-gap);
@@ -37,7 +37,7 @@
 }
 
 .btn--ghost:hover:not(:disabled) {
-    background: var(--color-gray-light);
+    background: var(--color-bg-input-focus);
 }
 
 .btn--with-border {
