@@ -128,7 +128,7 @@ export function ProductsTableWidget({ onAddProduct }: ProductsTableWidgetProps) 
         onClick={onAddProduct}
         aria-label="Добавить товар"
       >
-        <span className="DataTable__BtnAddText">Add New Product</span>
+        <span className="DataTable__BtnAddText">Добавить</span>
       </BaseButton>
     </>
   );
