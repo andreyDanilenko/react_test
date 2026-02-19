@@ -7,4 +7,6 @@ export { default as PlusCircleIcon } from './PlusCircleIcon';
 export { default as PlusIcon } from './PlusIcon';
 export { default as UserIcon } from './UserIcon';
 export { default as CloseIcon } from './CloseIcon';
-
+export { default as CaretLeftIcon } from './CaretLeftIcon';
+export { default as CaretRightIcon } from './CaretRightIcon';
+export { default as RefreshIcon } from './RefreshIcon';
