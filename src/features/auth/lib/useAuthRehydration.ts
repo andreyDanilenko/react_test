@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '@/app/store/hooks';
 import { setAuthFromStorage, setRehydrated } from '@/features/auth/model/authSlice';
 import { getPersistedAuthState } from './authStorage';
 
 export function useAuthRehydration(): void {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const persisted = getPersistedAuthState();
     if (persisted?.accessToken) {

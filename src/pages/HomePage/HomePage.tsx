@@ -6,6 +6,7 @@ import './HomePage.css';
 
 const HomePage: React.FC = () => {
   const { user } = useAuth();
+  // TODO: for test refresh session
   const { data: meUser, isLoading: meLoading, isError: meError } = useAuthMeQuery();
   const displayUser = meUser ?? user;
 
