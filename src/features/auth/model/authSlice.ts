@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { AuthUser } from '@/shared/api/authApi';
+import type { AuthUser } from '@/shared/api/authTypes';
 
 export type { AuthUser };
 

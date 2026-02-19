@@ -1,11 +1,13 @@
 import React from 'react';
 import { BaseInput } from '@/shared/ui';
 import SearchIcon from '@/shared/ui/icon/SearchIcon';
-import { useAuth } from '@/features/auth';
+import { useAuth, useAuthMeQuery } from '@/features/auth';
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
   const { user } = useAuth();
+  const { data: meUser, isLoading: meLoading, isError: meError } = useAuthMeQuery();
+  const displayUser = meUser ?? user;
 
   return (
     <div className="HomePage">
@@ -29,7 +31,11 @@ const HomePage: React.FC = () => {
       <div className="HomePage__Card">
         <h1 className="HomePage__Title">Главная</h1>
         <p className="HomePage__Subtitle">
-          {user ? `${user.firstName} ${user.lastName}, вы успешно вошли` : 'Вы успешно вошли в аккаунт'}
+          {meLoading && 'Загрузка профиля (запрос /me для проверки refresh)…'}
+          {meError && 'Ошибка загрузки профиля'}
+          {!meLoading && !meError && displayUser &&
+            `${displayUser.firstName} ${displayUser.lastName}, вы успешно вошли`}
+          {!meLoading && !meError && !displayUser && 'Вы успешно вошли в аккаунт'}
         </p>
       </div>
     </div>

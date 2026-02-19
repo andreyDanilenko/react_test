@@ -1,64 +1,44 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
-import { setAuth, setTokens, logout as logoutAction } from '@/features/auth/model/authSlice';
-import { authApi, toUser, type LoginBody } from '@/shared/api/authApi';
-
-export const authKeys = {
-  me: (token: string | null) => ['auth', 'me', token] as const,
-};
+import { setAuth, logout as logoutAction } from '@/features/auth/model/authSlice';
+import { authApi } from '@/features/auth/api/authApi';
+import { toUser } from '@/shared/api/authTypes';
+import type { LoginBody } from '@/shared/api/authTypes';
 
 export type LoginMutationPayload = LoginBody & { rememberMe?: boolean };
 
 export function useLoginMutation() {
   const dispatch = useAppDispatch();
-  const queryClient = useQueryClient();
+  const [loginTrigger, result] = authApi.useLoginMutation();
 
-  return useMutation({
-    mutationFn: (payload: LoginMutationPayload) =>
-      authApi.login({
-        username: payload.username,
-        password: payload.password,
-        expiresInMins: payload.expiresInMins,
-      }),
-    onSuccess: (data, variables) => {
-      const accessToken = data.accessToken ?? data.token;
-      if (!accessToken) return;
-      dispatch(
-        setAuth({
-          user: toUser(data),
-          accessToken,
-          refreshToken: data.refreshToken,
-          rememberMe: variables.rememberMe ?? true,
-        })
-      );
-      queryClient.setQueryData(authKeys.me(accessToken), toUser(data));
-    },
-  });
+  const mutateAsync = (payload: LoginMutationPayload) =>
+    loginTrigger(payload)
+      .unwrap()
+      .then((data) => {
+        const accessToken = data.accessToken ?? data.token;
+        if (accessToken) {
+          dispatch(
+            setAuth({
+              user: toUser(data),
+              accessToken,
+              refreshToken: data.refreshToken,
+              rememberMe: payload.rememberMe ?? true,
+            })
+          );
+        }
+        return data;
+      });
+
+  return {
+    mutateAsync,
+    isPending: result.isLoading,
+    isError: result.isError,
+    error: result.error,
+  };
 }
 
 export function useAuthMeQuery() {
   const accessToken = useAppSelector((s) => s.auth.accessToken);
-
-  return useQuery({
-    queryKey: authKeys.me(accessToken),
-    queryFn: () => authApi.me(accessToken!),
-    enabled: Boolean(accessToken),
-  });
-}
-
-export function useRefreshMutation() {
-  const dispatch = useAppDispatch();
-  const queryClient = useQueryClient();
-  const refreshToken = useAppSelector((s) => s.auth.refreshToken);
-
-  return useMutation({
-    mutationFn: () =>
-      authApi.refresh({ refreshToken: refreshToken ?? undefined, expiresInMins: 30 }),
-    onSuccess: (data) => {
-      dispatch(setTokens({ accessToken: data.accessToken, refreshToken: data.refreshToken }));
-      queryClient.invalidateQueries({ queryKey: ['auth'] });
-    },
-  });
+  return authApi.useMeQuery(undefined, { skip: !accessToken });
 }
 
 export function useAuth() {
