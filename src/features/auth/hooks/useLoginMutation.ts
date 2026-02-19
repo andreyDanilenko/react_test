@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
-import { setAuth, logout as logoutAction } from '@/features/auth/model/authSlice';
+import { useAppDispatch } from '@/app/store/hooks';
+import { setAuth } from '@/features/auth/model/authSlice';
 import { authApi } from '@/features/auth/api/authApi';
 import { toUser, type LoginBody } from '@/features/auth/model';
 
@@ -32,29 +32,5 @@ export function useLoginMutation() {
     isPending: result.isLoading,
     isError: result.isError,
     error: result.error,
-  };
-}
-
-export function useAuthMeQuery() {
-  const accessToken = useAppSelector((s) => s.auth.accessToken);
-  return authApi.useMeQuery(undefined, { skip: !accessToken });
-}
-
-export function useAuth() {
-  const user = useAppSelector((s) => s.auth.user);
-  const accessToken = useAppSelector((s) => s.auth.accessToken);
-  const isRehydrated = useAppSelector((s) => s.auth._rehydrated);
-  const dispatch = useAppDispatch();
-
-  const logout = () => {
-    dispatch(logoutAction());
-  };
-
-  return {
-    user,
-    accessToken,
-    isAuthenticated: Boolean(accessToken),
-    isRehydrated,
-    logout,
   };
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '@/features/auth';
+import { useAuth } from '@/features/auth/hooks';
 import { ROUTES } from '@/app/router/routes';
 
 export const PublicLayout: React.FC = () => {

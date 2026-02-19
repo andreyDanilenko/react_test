@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import {
   LogoBadge,
   InputGroup,
@@ -9,48 +8,25 @@ import {
   EyeIcon,
   CloseIcon,
 } from '@/shared/ui';
-import { useLoginMutation } from '@/features/auth';
-import { ROUTES } from '@/app/router/routes';
-import { getApiErrorMessage } from '@/shared/lib';
+import { useLoginFlow } from '@/features/auth/hooks';
+import { useToggle } from '@/shared/lib';
 import './RegistrationPage.css';
 
-const EXIT_TRANSITION_MS = 400;
-const REQUIRED_MESSAGE = 'Обязательное поле';
-
 const RegistrationPage: React.FC = () => {
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(true);
-  const [apiError, setApiError] = useState<string | null>(null);
-  const [isExiting, setIsExiting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const loginMutation = useLoginMutation();
-
-  const loginError = submitted && !username.trim() ? REQUIRED_MESSAGE : undefined;
-  const passwordError = submitted && !password ? REQUIRED_MESSAGE : undefined;
-  const hasValidationErrors = !username.trim() || !password;
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setApiError(null);
-    setSubmitted(true);
-    if (hasValidationErrors) return;
-    try {
-      await loginMutation.mutateAsync({
-        username: username.trim(),
-        password,
-        expiresInMins: 30,
-        rememberMe,
-      });
-      setIsExiting(true);
-      setTimeout(() => navigate(ROUTES.HOME), EXIT_TRANSITION_MS);
-    } catch (err) {
-      setApiError(getApiErrorMessage(err));
-    }
-  };
+  const [showPassword, toggleShowPassword] = useToggle(false);
+  const {
+    username,
+    setUsername,
+    password,
+    setPassword,
+    rememberMe,
+    setRememberMe,
+    validationErrors,
+    handleSubmit,
+    apiError,
+    isExiting,
+    isPending,
+  } = useLoginFlow();
 
   return (
     <div className={`RegistrationPage ${isExiting ? 'RegistrationPage--exiting' : ''}`}>
@@ -66,7 +42,11 @@ const RegistrationPage: React.FC = () => {
           </header>
 
           <form className="RegistrationPage__Form" onSubmit={handleSubmit}>
-            {apiError && <p className="RegistrationPage__Error" role="alert">{apiError}</p>}
+            {apiError && (
+              <p className="RegistrationPage__Error" role="alert">
+                {apiError}
+              </p>
+            )}
             <InputGroup
               label="Логин"
               name="login"
@@ -77,7 +57,7 @@ const RegistrationPage: React.FC = () => {
               leftIcon={<UserIcon size={24} />}
               rightIcon={username ? <CloseIcon size={17} /> : undefined}
               onRightIconClick={() => setUsername('')}
-              error={loginError}
+              error={validationErrors.loginError}
             />
             <InputGroup
               label="Пароль"
@@ -88,8 +68,8 @@ const RegistrationPage: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               leftIcon={<LockIcon size={24} />}
               rightIcon={<EyeIcon size={24} isHidden={!showPassword} />}
-              onRightIconClick={() => setShowPassword(!showPassword)}
-              error={passwordError}
+              onRightIconClick={toggleShowPassword}
+              error={validationErrors.passwordError}
             />
 
             <label className="RegistrationPage__Remember">
@@ -108,7 +88,7 @@ const RegistrationPage: React.FC = () => {
               hasBorder
               className="RegistrationPage__Submit"
             >
-              {loginMutation.isPending ? 'Вход…' : 'Войти'}
+              {isPending ? 'Вход…' : 'Войти'}
             </BaseButton>
 
             <div className="RegistrationPage__Divider" role="presentation">

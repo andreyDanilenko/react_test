@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseInput } from '@/shared/ui';
 import SearchIcon from '@/shared/ui/icon/SearchIcon';
-import { useAuth, useAuthMeQuery } from '@/features/auth';
+import { useAuth, useAuthMeQuery } from '@/features/auth/hooks';
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
