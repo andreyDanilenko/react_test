@@ -11,3 +11,10 @@
     line-height: var(--line-height-base);
     color: var(--color-text-title);
 }
+
+.InputGroup__Error {
+    font-size: 14px;
+    line-height: var(--line-height-base);
+    color: #c0392b;
+    margin: 0;
+}

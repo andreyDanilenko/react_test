@@ -11,42 +11,49 @@ import {
 } from '@/shared/ui';
 import { useLoginMutation } from '@/features/auth';
 import { ROUTES } from '@/app/router/routes';
+import { getApiErrorMessage } from '@/shared/lib';
 import './RegistrationPage.css';
+
+const EXIT_TRANSITION_MS = 400;
+const REQUIRED_MESSAGE = 'Обязательное поле';
 
 const RegistrationPage: React.FC = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [rememberMe, setRememberMe] = useState(true);
+  const [apiError, setApiError] = useState<string | null>(null);
+  const [isExiting, setIsExiting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const loginMutation = useLoginMutation();
 
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+  const loginError = submitted && !username.trim() ? REQUIRED_MESSAGE : undefined;
+  const passwordError = submitted && !password ? REQUIRED_MESSAGE : undefined;
+  const hasValidationErrors = !username.trim() || !password;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null);
-    if (!username.trim() || !password) {
-      setError('Введите логин и пароль');
-      return;
-    }
+    setApiError(null);
+    setSubmitted(true);
+    if (hasValidationErrors) return;
     try {
       await loginMutation.mutateAsync({
         username: username.trim(),
         password,
         expiresInMins: 30,
+        rememberMe,
       });
-      navigate(ROUTES.HOME);
+      setIsExiting(true);
+      setTimeout(() => navigate(ROUTES.HOME), EXIT_TRANSITION_MS);
     } catch (err) {
-      setError(
-        typeof err === 'object' && err !== null && 'response' in err
-          ? (err as { response?: { data?: { message?: string } } }).response?.data?.message ?? 'Ошибка входа'
-          : 'Ошибка входа'
-      );
+      setApiError(getApiErrorMessage(err));
     }
   };
 
   return (
-    <div className="RegistrationPage">
+    <div className={`RegistrationPage ${isExiting ? 'RegistrationPage--exiting' : ''}`}>
       <div className="RegistrationPage__Card">
         <div className="RegistrationPage__Inner">
           <div className="RegistrationPage__Logo">
@@ -59,7 +66,7 @@ const RegistrationPage: React.FC = () => {
           </header>
 
           <form className="RegistrationPage__Form" onSubmit={handleSubmit}>
-            {error && <p className="RegistrationPage__Error">{error}</p>}
+            {apiError && <p className="RegistrationPage__Error" role="alert">{apiError}</p>}
             <InputGroup
               label="Логин"
               name="login"
@@ -70,6 +77,7 @@ const RegistrationPage: React.FC = () => {
               leftIcon={<UserIcon size={24} />}
               rightIcon={username ? <CloseIcon size={17} /> : undefined}
               onRightIconClick={() => setUsername('')}
+              error={loginError}
             />
             <InputGroup
               label="Пароль"
@@ -81,7 +89,19 @@ const RegistrationPage: React.FC = () => {
               leftIcon={<LockIcon size={24} />}
               rightIcon={<EyeIcon size={24} isHidden={!showPassword} />}
               onRightIconClick={() => setShowPassword(!showPassword)}
+              error={passwordError}
             />
+
+            <label className="RegistrationPage__Remember">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="RegistrationPage__RememberCheckbox"
+                aria-describedby="remember-hint"
+              />
+              <span className="RegistrationPage__RememberLabel">Запомнить меня</span>
+            </label>
 
             <BaseButton
               variant="primary"
