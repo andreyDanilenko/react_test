@@ -5,6 +5,7 @@ import { useAuth, useAuthMeQuery } from '@/features/auth/hooks';
 import { useAppToast } from '@/shared/lib/hooks/useAppToast';
 import { ConfirmModal } from '@/shared/ui/ConfirmModal/ConfirmModal';
 import { AddProductModal } from '@/features/products';
+import { ProductsTableWidget } from '@/widgets';
 
 import { useModal } from '@/shared/lib/modal';
 
@@ -165,6 +166,10 @@ const HomePage: React.FC = () => {
         Добавить
       </button>
     </div>
+
+      <div className="HomePage__TableWrap">
+        <ProductsTableWidget onAddProduct={handleOpenAddProduct} />
+      </div>
     </div>
   );
 };

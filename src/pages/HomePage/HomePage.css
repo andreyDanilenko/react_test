@@ -117,6 +117,12 @@
   gap: var(--gap-card);
 }
 
+.HomePage__TableWrap {
+  width: 100%;
+  max-width: 1920px;
+  margin-top: var(--gap-card);
+}
+
 .HomePage__Title {
   font-weight: var(--font-weight-heading);
   font-size: var(--font-size-heading);
