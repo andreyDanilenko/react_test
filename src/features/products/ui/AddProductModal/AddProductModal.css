@@ -1,5 +1,5 @@
 .AddProductModal {
-  padding: var(--padding-card);
+  padding: var(--padding-card-sm);
   color: var(--color-text-body);
 }
 
