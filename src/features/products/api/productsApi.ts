@@ -5,6 +5,7 @@ import type { CreateProductBody, ProductsResponse } from './types';
 export type GetProductsParams = {
   limit?: number;
   skip?: number;
+  q?: string;
   sortBy?: string;
   order?: 'asc' | 'desc';
 };
@@ -13,11 +14,17 @@ export const productsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<ProductsResponse, GetProductsParams | void>({
       query: (params) => {
+        const q = params?.q?.trim();
+        if (q) {
+          const searchParams = new URLSearchParams();
+          searchParams.set('q', q);
+          if (params?.limit !== undefined) searchParams.set('limit', String(params.limit));
+          if (params?.skip !== undefined) searchParams.set('skip', String(params.skip));
+          return { url: `products/search?${searchParams.toString()}` };
+        }
         const searchParams = new URLSearchParams();
         if (params?.limit !== undefined) searchParams.set('limit', String(params.limit));
         if (params?.skip !== undefined) searchParams.set('skip', String(params.skip));
-        if (params?.sortBy) searchParams.set('sortBy', params.sortBy);
-        if (params?.order) searchParams.set('order', params.order);
         const query = searchParams.toString();
         return { url: query ? `products?${query}` : 'products' };
       },
