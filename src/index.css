@@ -17,6 +17,9 @@
     --color-text-pagination: #969B9F;
 
     --color-primary: #242EDB;
+    --color-select: #3C538E;
+    --color-pagination-active: #797FEA;
+    --color-border-pagination: #ECECEB;
     --color-border-light: #EDEDED;
     --color-border-icon: #C9C9C9;
     --color-bg-main: #FFFFFF;
@@ -123,6 +126,9 @@
     --color-text-pagination: #808080;
 
     --color-primary: #4A53E3;
+    --color-select: #5A63A0;
+    --color-pagination-active: #8B92F0;
+    --color-border-pagination: #404040;
     --color-border-light: #404040;
     --color-border-icon: #505050;
     --color-bg-main: #1A1A1A;
