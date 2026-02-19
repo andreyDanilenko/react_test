@@ -5,6 +5,7 @@ import {
   type FetchArgs,
   type QueryReturnValue,
 } from '@reduxjs/toolkit/query/react';
+// exception for refresh
 import { setTokens, logout } from '@/features/auth/model/authSlice';
 import { AUTH_BASE_URL } from '@/shared/api/constants';
 import type { RefreshResponse } from '@/shared/api/reauthTypes';

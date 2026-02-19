@@ -1,3 +1,4 @@
+// exception type for auth/hooks/useAuth
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { logout as logoutAction } from '@/features/auth/model/authSlice';
 

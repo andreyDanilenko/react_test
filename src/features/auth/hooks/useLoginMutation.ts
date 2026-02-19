@@ -1,3 +1,4 @@
+// exception type for auth/hooks/useLoginMutation
 import { useAppDispatch } from '@/app/store/hooks';
 import { setAuth } from '@/features/auth/model/authSlice';
 import { authApi } from '@/features/auth/api/authApi';
