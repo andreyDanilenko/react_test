@@ -1,4 +1,5 @@
 # React Test Project [[EN]](https://github.com/andreyDanilenko/react_test/blob/main/README.md)
+## React Test Preview [[Beta]](https://lambent-cheesecake-c4626e.netlify.app)
 
 Тестовое задание: каталог товаров с авторизацией, сортировкой и корзиной с использованием DummyJSON API.
 

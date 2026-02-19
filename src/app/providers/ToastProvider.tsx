@@ -46,9 +46,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       <Toaster
         position="top-right"
         toastOptions={{
-          // Длительность по умолчанию
           duration: 4000,
-          // Стили для разных типов тостов
           style: {
             background: 'transparent',
             padding: 0,

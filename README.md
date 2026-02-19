@@ -1,5 +1,6 @@
 # React Test Project [[RU]](https://github.com/andreyDanilenko/react_test/blob/main/README.ru.md)
- 
+## React Test Preview [[Beta]](https://lambent-cheesecake-c4626e.netlify.app)
+
 Test assignment: product catalog with authorization, sorting, and cart using DummyJSON API.
 
 ## 🚀 Quick Start
