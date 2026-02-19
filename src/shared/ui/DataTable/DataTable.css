@@ -1,0 +1,400 @@
+/* Карточка таблицы */
+.DataTable__Card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 40px;
+  width: 100%;
+  max-width: 1920px;
+  background: var(--color-bg-main);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
+}
+
+.DataTable__Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 42px;
+}
+
+.DataTable__Title {
+  font-family: 'Cairo', var(--font-family);
+  font-weight: var(--font-weight-heading);
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--color-text-title);
+  margin: 0;
+}
+
+.DataTable__Actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.DataTable__BtnRefresh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: var(--color-bg-main);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+
+.DataTable__BtnRefresh:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: var(--color-bg-input);
+}
+
+.DataTable__BtnRefresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.DataTable__BtnRefresh svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--color-icon-gray);
+}
+
+.DataTable__BtnAdd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 15px;
+  height: 42px;
+  min-height: 42px;
+  background: var(--color-primary);
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--transition-base);
+  color: var(--color-text-inverse);
+}
+
+.DataTable__BtnAdd:hover {
+  opacity: 0.9;
+}
+
+.DataTable__BtnAdd svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.DataTable__BtnAddText {
+  font-family: 'Cairo', var(--font-family);
+  font-weight: var(--font-weight-heading);
+  font-size: 14px;
+  line-height: 26px;
+  white-space: nowrap;
+}
+
+.DataTable__ProgressWrap {
+  width: 100%;
+  height: 4px;
+  background: var(--color-gray-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.DataTable__ProgressBar {
+  height: 100%;
+  width: 40%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  animation: DataTable__progress 0.8s ease-in-out infinite;
+}
+
+@keyframes DataTable__progress {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(150%); }
+  100% { transform: translateX(-100%); }
+}
+
+.DataTable__ScrollWrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.DataTable__Table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+/* Колонка чекбокса — по содержимому, не сжимается ниже чекбокса */
+.DataTable__ColCheckbox {
+  width: 1%;
+  min-width: 50px;
+}
+
+.DataTable__ColData {
+  width: auto;
+}
+
+.DataTable__ColActions {
+  width: 100px;
+}
+
+.DataTable__Th {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--color-border-light);
+  font-family: 'Cairo', var(--font-family);
+  font-weight: var(--font-weight-heading);
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--color-text-label);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.DataTable__Th--checkbox {
+  padding: 16px 13px 16px 15px;
+  text-align: left;
+  vertical-align: middle;
+  width: 1%;
+  min-width: 50px;
+}
+
+.DataTable__Th--product {
+  text-align: left;
+  padding-left: 0;
+}
+
+.DataTable__Th--actions {
+  padding: 16px 8px;
+}
+
+.DataTable__ThSort {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+}
+
+.DataTable__ThSort:hover {
+  color: var(--color-primary);
+}
+
+.DataTable__SortIcon {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.DataTable__SortIcon--none {
+  opacity: 0.4;
+}
+
+.DataTable__Row {
+  cursor: pointer;
+}
+
+.DataTable__Row:hover .DataTable__Td {
+  background: var(--color-bg-input);
+}
+
+.DataTable__Row--selected .DataTable__Td {
+  background: rgba(60, 83, 142, 0.06);
+}
+
+.DataTable__Row--selected:hover .DataTable__Td {
+  background: rgba(60, 83, 142, 0.1);
+}
+
+.DataTable__Row--selected .DataTable__Td--checkbox {
+  box-shadow: inset 3px 0 0 var(--color-select);
+}
+
+.DataTable__Td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--color-text-body);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.DataTable__Td--checkbox {
+  padding: 14px 13px 14px 15px;
+  text-align: left;
+  width: 1%;
+  min-width: 50px;
+}
+
+.DataTable__Td--product {
+  text-align: left;
+  padding-left: 0;
+}
+
+.DataTable__Td--vendor {
+  font-weight: var(--font-weight-heading);
+}
+
+.DataTable__RatingValue--low {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+.DataTable__Td--price {
+  font-family: ui-monospace, 'Roboto Mono', monospace;
+}
+
+.DataTable__PriceDec {
+  color: var(--color-text-price-secondary);
+}
+
+.DataTable__Td--rating {
+  /* для cellClassName */
+}
+
+.DataTable__Td--actions {
+  padding: 14px 8px;
+}
+
+.DataTable__ProductCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.DataTable__ProductPhoto {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--color-gray-light);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 10px;
+  overflow: hidden;
+}
+
+.DataTable__ProductImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.DataTable__ProductInfo {
+  min-width: 0;
+}
+
+.DataTable__ProductName {
+  font-family: 'Cairo', var(--font-family);
+  font-weight: var(--font-weight-heading);
+  font-size: 16px;
+  color: var(--color-text-heading);
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.DataTable__ProductCategory {
+  font-family: 'Cairo', var(--font-family);
+  font-size: 14px;
+  color: var(--color-text-label);
+}
+
+.DataTable__RowActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.DataTable__BtnQuickAdd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 27px;
+  background: var(--color-primary);
+  border-radius: 23px;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--transition-base);
+  color: var(--color-text-inverse);
+}
+
+.DataTable__BtnQuickAdd:hover {
+  opacity: 0.9;
+}
+
+.DataTable__BtnQuickAdd svg {
+  width: 20px;
+  height: 20px;
+}
+
+.DataTable__BtnMore {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background var(--transition-base);
+  color: var(--color-text-label);
+}
+
+.DataTable__BtnMore:hover {
+  background: var(--color-gray-light);
+}
+
+.DataTable__BtnMore svg {
+  width: 32px;
+  height: 32px;
+}
+
+.DataTable__BtnMore svg circle {
+  fill: currentColor;
+}
+
+.DataTable__Message {
+  padding: 24px 18px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-divider);
+}
+
+.DataTable__Footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 11px 0 0;
+  border-top: 1px solid var(--color-border-light);
+}
+
+@media (max-width: 768px) {
+  .DataTable__Table {
+    min-width: 600px;
+  }
+}
