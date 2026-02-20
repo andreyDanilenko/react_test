@@ -46,7 +46,3 @@ export interface DataTableProps<T> {
   rowActions?: (row: T) => ReactNode;
   className?: string;
 }
-
-export function isProductColumn<T>(col: DataTableColumn<T>): col is DataTableColumnProduct<T> {
-  return col.type === 'product';
-}

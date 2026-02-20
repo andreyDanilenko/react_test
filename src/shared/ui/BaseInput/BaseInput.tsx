@@ -1,14 +1,8 @@
-import React, { type ReactNode, type InputHTMLAttributes } from 'react';
+import React from 'react';
+import type { BaseInputProps } from './BaseInput.types'
 import './BaseInput.css';
 
-interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    icon?: ReactNode;
-    rightIcon?: ReactNode;
-    onRightIconClick?: () => void;
-    variant?: 'default' | 'filled';
-}
-  
-const BaseInput: React.FC<CustomInputProps> = ({ 
+const BaseInput: React.FC<BaseInputProps> = ({ 
     icon, 
     rightIcon, 
     onRightIconClick, 

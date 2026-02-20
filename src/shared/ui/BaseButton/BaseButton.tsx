@@ -1,26 +1,8 @@
-import React, { type ReactNode } from 'react';
+import React from 'react';
+import type { BaseButtonProps } from './BaseButton.types';
 import './BaseButton.css';
 
-type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'link'
-  | 'icon-only'
-  | 'icon-gray'
-  | 'icon-transparent'
-  | 'ghost';
-type ButtonSize = 'sm' | 'md' | 'lg';
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: ReactNode;
-  icon?: ReactNode;
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  className?: string;
-  hasBorder?: boolean;
-}
-
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<BaseButtonProps> = ({
   children,
   icon,
   variant = 'primary',

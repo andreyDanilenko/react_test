@@ -1,14 +1,6 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
-  closeOnOverlayClick?: boolean;
-  closeOnEsc?: boolean;
-}
+import type { ModalProps } from './Modal.types'
 
 const sizeStyles = {
   sm: 'max-w-md',
@@ -18,7 +10,7 @@ const sizeStyles = {
   full: 'max-w-[90vw] w-full',
 };
 
-export const Modal: React.FC<ModalProps> = ({
+const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   children,
@@ -77,3 +69,5 @@ export const Modal: React.FC<ModalProps> = ({
     document.body
   );
 };
+
+export default Modal

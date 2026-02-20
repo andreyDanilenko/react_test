@@ -1,15 +1,6 @@
 import React from 'react';
+import type { CheckboxProps } from './Checkbox.types'
 import './Checkbox.css';
-
-export interface CheckboxProps {
-  checked?: boolean;
-  onChange?: (e?: React.ChangeEvent<HTMLInputElement>, newValue?: boolean) => void;
-  label?: React.ReactNode;
-  disabled?: boolean;
-  'aria-label'?: string;
-  id?: string;
-  className?: string;
-}
 
 const Checkbox: React.FC<CheckboxProps> = ({
   checked = false,

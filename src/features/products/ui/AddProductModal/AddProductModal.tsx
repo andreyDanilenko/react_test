@@ -1,8 +1,7 @@
 import React, { useState, type SyntheticEvent } from 'react';
-import { BaseButton } from '@/shared/ui';
-import InputGroup from '@/shared/ui/InputGroup/InputGroup';
-import CloseIcon from '@/shared/ui/icon/CloseIcon';
-import { useAppToast } from '@/shared/lib/hooks/useAppToast';
+import { BaseButton, InputGroup } from '@/shared/ui';
+import { CloseIcon } from '@/shared/ui/icon';
+import { useAppToast } from '@/shared/lib/hooks';
 import { useCreateProductMutation } from '@/features/products/api/productsApi';
 
 import './AddProductModal.css';

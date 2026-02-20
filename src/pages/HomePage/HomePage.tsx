@@ -9,6 +9,9 @@ const HomePage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [tablePage, setTablePage] = useState(1);
 
+  // const debouncedSearch = useDebounce(searchQuery, 500);
+
+
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
     setTablePage(1);

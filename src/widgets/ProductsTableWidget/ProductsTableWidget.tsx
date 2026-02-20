@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import type { Product } from '@/entities/product';
 import { useGetProductsQuery } from '@/features/products/api/productsApi';
-import { DataTable } from '@/shared/ui/DataTable';
-import type { DataTableColumn } from '@/shared/ui/DataTable';
-import { BaseButton, Pagination } from '@/shared/ui';
+import { BaseButton, Pagination, DataTable } from '@/shared/ui';
 import { DotsCircleIcon, PlusIcon, RefreshIcon } from '@/shared/ui/icon';
 import { formatPriceParts } from '@/shared/lib';
+import type { DataTableColumn } from '@/shared/ui';
+import type { Product } from '@/entities/product';
 import './ProductsTableWidget.css';
 
 const PAGE_SIZE = 10;
@@ -184,25 +183,25 @@ export function ProductsTableWidget({
         <div className="ProductsTableWidget__Loader" />
       </div>
       <DataTable<Product>
-      title="Все позиции"
-      data={products}
-      columns={productColumns}
-      getRowId={(row) => row.id}
-      loading={isLoading}
-      error={isError}
-      emptyMessage="Нет товаров для отображения."
-      errorMessage="Ошибка загрузки товаров. Попробуйте обновить страницу."
-      headerActions={headerActions}
-      footer={footer}
-      selectable
-      selectedIds={selectedIds}
-      onSelect={handleRowSelect}
-      onSelectAll={handleSelectAll}
-      sortBy={sortBy}
-      sortOrder={sortOrder}
-      onSort={handleSort}
-      rowActions={rowActions}
-    />
+        title="Все позиции"
+        data={products}
+        columns={productColumns}
+        getRowId={(row) => row.id}
+        loading={isLoading}
+        error={isError}
+        emptyMessage="Нет товаров для отображения."
+        errorMessage="Ошибка загрузки товаров. Попробуйте обновить страницу."
+        headerActions={headerActions}
+        footer={footer}
+        selectable
+        selectedIds={selectedIds}
+        onSelect={handleRowSelect}
+        onSelectAll={handleSelectAll}
+        sortBy={sortBy}
+        sortOrder={sortOrder}
+        onSort={handleSort}
+        rowActions={rowActions}
+      />
     </div>
   );
 }

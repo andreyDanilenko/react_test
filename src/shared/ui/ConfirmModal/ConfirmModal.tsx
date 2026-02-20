@@ -1,16 +1,7 @@
 import React, { useState } from 'react';
 import { BaseButton } from '@/shared/ui';
+import type { ConfirmModalProps } from './ConfirmModal.types'
 import './ConfirmModal.css';
-
-interface ConfirmModalProps {
-  onClose: () => void;
-  title: string;
-  message: string;
-  onConfirm: () => Promise<void>;
-  confirmText?: string;
-  cancelText?: string;
-  variant?: 'danger' | 'warning' | 'info';
-}
 
 const confirmButtonClass: Record<NonNullable<ConfirmModalProps['variant']>, string> = {
   danger: 'ConfirmModal__ConfirmBtn--danger',
@@ -18,7 +9,7 @@ const confirmButtonClass: Record<NonNullable<ConfirmModalProps['variant']>, stri
   info: 'ConfirmModal__ConfirmBtn--info',
 };
 
-export const ConfirmModal: React.FC<ConfirmModalProps> = ({
+const ConfirmModal: React.FC<ConfirmModalProps> = ({
   onClose,
   title,
   message,
@@ -74,3 +65,5 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
     </div>
   );
 };
+
+export default ConfirmModal;

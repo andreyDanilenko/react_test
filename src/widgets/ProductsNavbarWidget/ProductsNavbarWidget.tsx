@@ -1,12 +1,7 @@
-import { BaseInput } from '@/shared/ui';
+import { DebouncedSearch } from '@/shared/ui';
 import { SearchIcon } from '@/shared/ui/icon';
+import type { ProductsNavbarWidgetProps } from './ProductsNavbarWidget.types';
 import './ProductsNavbarWidget.css';
-
-export interface ProductsNavbarWidgetProps {
-  searchQuery: string;
-  onSearchChange: (value: string) => void;
-  title?: string;
-}
 
 export function ProductsNavbarWidget({
   searchQuery,
@@ -20,13 +15,14 @@ export function ProductsNavbarWidget({
       </div>
       <div className="ProductsNavbarWidget__Menu">
         <div className="ProductsNavbarWidget__SearchWrap">
-          <BaseInput
+          <DebouncedSearch
             variant="filled"
             placeholder="Поиск товаров, категорий..."
             icon={<SearchIcon />}
             aria-label="Поиск"
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
+            initialValue={searchQuery}
+            onDebouncedChange={onSearchChange}
+            delay={500}
           />
         </div>
       </div>

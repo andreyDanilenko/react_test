@@ -1,10 +1,7 @@
 import React from 'react';
-import LogoIcon from '../icon/LogoIcon';
+import { LogoIcon } from '@/shared/ui';
+import type { LogoBadgeProps } from './LogoBadge.types'
 import './LogoBadge.css';
-
-interface LogoBadgeProps {
-  width?: number;
-}
 
 const LogoBadge: React.FC<LogoBadgeProps> = ({ width = 35 }) => {
     const height = React.useMemo(() => Math.round(width * (34 / 35)), [width]);

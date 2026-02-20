@@ -1,14 +1,7 @@
-import React, { type ReactNode, type InputHTMLAttributes } from 'react';
-import CustomInput from '../BaseInput/BaseInput';
+import React from 'react';
+import { BaseInput } from '@/shared/ui';
+import type { InputGroupProps } from './InputGroup.types'
 import './InputGroup.css';
-
-interface InputGroupProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
-  onRightIconClick?: () => void;
-  error?: string;
-}
 
 const InputGroup: React.FC<InputGroupProps> = ({
   label,
@@ -21,7 +14,7 @@ const InputGroup: React.FC<InputGroupProps> = ({
   return (
     <div className="InputGroup">
       <label className="InputGroup__Label">{label}</label>
-      <CustomInput
+      <BaseInput
         icon={leftIcon}
         rightIcon={rightIcon}
         onRightIconClick={onRightIconClick}

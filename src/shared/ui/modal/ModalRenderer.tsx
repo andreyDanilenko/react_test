@@ -1,8 +1,8 @@
 import React from 'react';
 import { useModal } from '@/shared/lib/modal/context';
-import { Modal } from './Modal';
+import { Modal } from '@/shared/ui';
 
-export const ModalRenderer: React.FC = () => {
+const ModalRenderer: React.FC = () => {
   const { modalConfig, closeModal, isOpen } = useModal();
 
   if (!modalConfig || !isOpen) return null;
@@ -21,3 +21,5 @@ export const ModalRenderer: React.FC = () => {
     </Modal>
   );
 };
+
+export default ModalRenderer

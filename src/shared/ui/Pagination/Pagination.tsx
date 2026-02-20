@@ -1,14 +1,8 @@
 import React from 'react';
 import { CaretLeftIcon, CaretRightIcon } from '@/shared/ui/icon';
+import type { PaginationProps } from './Pagination.types'
 import './Pagination.css';
 
-export interface PaginationProps {
-  total: number;
-  pageSize: number;
-  currentPage: number;
-  onPageChange: (page: number) => void;
-  className?: string;
-}
 
 const MAX_VISIBLE_PAGES = 5;
 
@@ -31,7 +25,7 @@ function getPageNumbers(currentPage: number, totalPages: number): (number | 'ell
   return pages;
 }
 
-export const Pagination: React.FC<PaginationProps> = ({
+const Pagination: React.FC<PaginationProps> = ({
   total,
   pageSize,
   currentPage,
@@ -91,3 +85,5 @@ export const Pagination: React.FC<PaginationProps> = ({
     </div>
   );
 };
+
+export default Pagination;

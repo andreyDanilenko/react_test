@@ -1,16 +1,8 @@
 import React from 'react';
-import type { Toast as HotToastType } from 'react-hot-toast';
-import { baseToastStyle, toastStyles } from './styles';
+import { baseToastStyle, toastStyles } from './Toast.styles';
+import type { ToastProps } from './Toast.types';
 
-export interface ToastProps {
-  t: HotToastType;
-  message: string;
-  type?: 'success' | 'error' | 'info' | 'warning' | 'loading';
-  title?: string;
-  onClose?: () => void;
-}
-
-export const Toast: React.FC<ToastProps> = ({
+const Toast: React.FC<ToastProps> = ({
   t,
   message,
   type = 'info',
@@ -79,3 +71,5 @@ export const Toast: React.FC<ToastProps> = ({
     </div>
   );
 };
+
+export default Toast

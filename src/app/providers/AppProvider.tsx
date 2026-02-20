@@ -5,7 +5,7 @@ import AppRouter from '@/app/router/AppRouter';
 import { useAuthRehydration } from '@/features/auth/lib';
 import { ToastProvider } from './ToastProvider';
 import { ModalProvider } from '@/shared/lib/modal';
-import { ModalRenderer } from '@/shared/ui/modal';
+import { ModalRenderer } from '@/shared/ui';
 
 const AppProvider: React.FC = () => (
   <ReduxProvider store={store}>

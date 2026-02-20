@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox } from '@/shared/ui';
-import type { DataTableColumn, DataTableProps, SortOrder } from './types';
-import { isProductColumn } from './types';
+import { isProductColumn } from './DataTable.utils';
+import type { DataTableColumn, DataTableProps, SortOrder } from './DataTable.types';
 import './DataTable.css';
 
 const SortIcon: React.FC<{
@@ -23,7 +23,7 @@ const SortIcon: React.FC<{
   );
 };
 
-export function DataTable<T>({
+function DataTable<T>({
   title,
   data,
   columns,
@@ -228,3 +228,6 @@ function DataTableRow<T>({
     </tr>
   );
 }
+
+
+export default DataTable;

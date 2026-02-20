@@ -1,7 +1,7 @@
 import React from 'react';
 import { toast } from 'react-hot-toast';
-import { Toast } from '@/shared/ui/toast/Toast';
-import { toastStyles } from '@/shared/ui/toast/styles';
+import { Toast } from '@/shared/ui';
+import { toastStyles } from '@/shared/ui/toast/Toast.styles';
 
 type ToastType = keyof typeof toastStyles;
 
