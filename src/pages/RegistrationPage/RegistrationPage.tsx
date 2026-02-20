@@ -77,7 +77,7 @@ const RegistrationPage: React.FC = () => {
               <Checkbox
                 checked={rememberMe}
                 size='sm'
-                onChange={(e) => setRememberMe(e.target.checked)}
+                onChange={(e) => setRememberMe(e?.target.checked ?? false)}
                 aria-label="Запомнить меня"
               />
               <span className="RegistrationPage__RememberLabel">Запомнить меня</span>

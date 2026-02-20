@@ -1,4 +1,4 @@
-export { ProductsNavbarWidget } from './ProductsNavbarWidget';
-export type { ProductsNavbarWidgetProps } from './ProductsNavbarWidget';
-export { ProductsTableWidget } from './ProductsTableWidget';
-export type { ProductsTableWidgetProps } from './ProductsTableWidget';
+export { ProductsNavbarWidget } from './ProductsNavbarWidget/ProductsNavbarWidget';
+export type { ProductsNavbarWidgetProps } from './ProductsNavbarWidget/ProductsNavbarWidget.types';
+export { ProductsTableWidget } from './ProductsTableWidget/ProductsTableWidget';
+export type { ProductsTableWidgetProps } from './ProductsTableWidget/ProductsTableWidget';
