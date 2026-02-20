@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { AddProductModal } from '@/features/products';
 import { useGetProductsQuery } from '@/features/products/api/productsApi';
 import { BaseButton, Pagination, DataTable } from '@/shared/ui';
 import { DotsCircleIcon, PlusIcon, RefreshIcon } from '@/shared/ui/icon';
 import { formatPriceParts } from '@/shared/lib';
+import { useModal } from '@/shared/lib/modal';
 import type { DataTableColumn } from '@/shared/ui';
 import type { Product } from '@/entities/product';
 import './ProductsTableWidget.css';
@@ -67,24 +69,25 @@ const productColumns: DataTableColumn<Product>[] = [
 
 export interface ProductsTableWidgetProps {
   searchQuery?: string;
-  page?: number;
-  onPageChange?: (page: number) => void;
-  onAddProduct?: () => void;
 }
 
-export function ProductsTableWidget({
-  searchQuery = '',
-  page: controlledPage,
-  onPageChange,
-  onAddProduct,
-}: ProductsTableWidgetProps) {
-  const [internalPage, setInternalPage] = useState(1);
-  const page = controlledPage ?? internalPage;
-  const setPage = onPageChange ?? setInternalPage;
+export function ProductsTableWidget({ searchQuery = '' }: ProductsTableWidgetProps) {
+  return <ProductsTableWidgetContent key={searchQuery} searchQuery={searchQuery} />;
+}
 
+function ProductsTableWidgetContent({ searchQuery }: { searchQuery: string }) {
+  const { openModal } = useModal();
+  const [page, setPage] = useState(1);
   const [sortBy, setSortBy] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+
+  const handleOpenAddProduct = useCallback(() => {
+    openModal({
+      component: AddProductModal,
+      options: { size: 'md', closeOnOverlayClick: false },
+    });
+  }, [openModal]);
 
   const { data, isLoading, isError, isFetching, refetch } = useGetProductsQuery({
     limit: PAGE_SIZE,
@@ -114,6 +117,7 @@ export function ProductsTableWidget({
     });
   };
 
+
   const handleSelectAll = () => {
     if (!products.length) return;
     const allSelected = products.every((p) => selectedIds.has(p.id));
@@ -136,7 +140,7 @@ export function ProductsTableWidget({
         size="md"
         className="DataTable__BtnAdd"
         icon={<PlusIcon size={22} />}
-        onClick={onAddProduct}
+        onClick={handleOpenAddProduct}
         aria-label="Добавить товар"
       >
         <span className="DataTable__BtnAddText">Добавить</span>
