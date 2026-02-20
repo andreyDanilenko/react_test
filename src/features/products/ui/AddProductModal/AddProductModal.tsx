@@ -30,10 +30,10 @@ export const AddProductModal: React.FC<AddProductModalProps> = ({ onClose }) => 
         brand: vendor,
         article: article || undefined,
       }).unwrap();
-      toast.success('Товар успешно добавлен');
+      toast.success('Товар успешно добавлен', { title: 'Успешно' });
       onClose();
     } catch {
-      toast.error('Не удалось добавить товар');
+      toast.error('Не удалось добавить товар', { title: 'Ошибка' });
     } finally {
       setLoading(false);
     }
