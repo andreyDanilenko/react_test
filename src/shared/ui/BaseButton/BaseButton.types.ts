@@ -7,6 +7,7 @@ export type BaseButtonVariant =
   | 'icon-only'
   | 'icon-gray'
   | 'icon-transparent'
+  | 'icon-outline'
   | 'ghost';
 
 export type BaseButtonSize = 'sm' | 'md' | 'lg';

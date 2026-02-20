@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { AddProductModal } from '@/features/products';
 import { useGetProductsQuery } from '@/features/products/api/productsApi';
 import { BaseButton, Pagination, DataTable } from '@/shared/ui';
-import { DotsCircleIcon, PlusIcon, RefreshIcon } from '@/shared/ui/icon';
+import { DotsCircleIcon, PlusCircleIcon, PlusIcon, RefreshIcon } from '@/shared/ui/icon';
 import { formatPriceParts } from '@/shared/lib';
 import { useModal } from '@/shared/lib/modal';
 import type { DataTableColumn } from '@/shared/ui';
@@ -127,9 +127,8 @@ function ProductsTableWidgetContent({ searchQuery }: { searchQuery: string }) {
   const headerActions = (
     <>
       <BaseButton
-        variant="icon-transparent"
+        variant="icon-outline"
         size="md"
-        className="DataTable__BtnRefresh"
         icon={<RefreshIcon size={22} />}
         onClick={() => refetch()}
         disabled={isFetching}
@@ -138,12 +137,11 @@ function ProductsTableWidgetContent({ searchQuery }: { searchQuery: string }) {
       <BaseButton
         variant="primary"
         size="md"
-        className="DataTable__BtnAdd"
-        icon={<PlusIcon size={22} />}
+        icon={<PlusCircleIcon size={18} />}
         onClick={handleOpenAddProduct}
         aria-label="Добавить товар"
       >
-        <span className="DataTable__BtnAddText">Добавить</span>
+        Добавить
       </BaseButton>
     </>
   );

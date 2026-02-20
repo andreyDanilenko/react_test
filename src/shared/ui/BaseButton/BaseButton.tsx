@@ -27,6 +27,8 @@ const Button: React.FC<BaseButtonProps> = ({
         return 'btn--icon-gray';
       case 'icon-transparent':
         return 'btn--icon-transparent';
+      case 'icon-outline':
+        return 'btn--icon-outline';
       case 'ghost':
         return 'btn--ghost';
       default:
