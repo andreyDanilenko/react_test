@@ -14,17 +14,17 @@ export const productsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<ProductsResponse, GetProductsParams | void>({
       query: (params) => {
-        const q = params?.q?.trim();
-        if (q) {
-          const searchParams = new URLSearchParams();
-          searchParams.set('q', q);
-          if (params?.limit !== undefined) searchParams.set('limit', String(params.limit));
-          if (params?.skip !== undefined) searchParams.set('skip', String(params.skip));
-          return { url: `products/search?${searchParams.toString()}` };
-        }
         const searchParams = new URLSearchParams();
         if (params?.limit !== undefined) searchParams.set('limit', String(params.limit));
         if (params?.skip !== undefined) searchParams.set('skip', String(params.skip));
+        if (params?.sortBy) searchParams.set('sortBy', params.sortBy);
+        if (params?.order === 'asc' || params?.order === 'desc') searchParams.set('order', params.order);
+
+        const q = params?.q?.trim();
+        if (q) {
+          searchParams.set('q', q);
+          return { url: `products/search?${searchParams.toString()}` };
+        }
         const query = searchParams.toString();
         return { url: query ? `products?${query}` : 'products' };
       },
