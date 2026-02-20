@@ -1,0 +1,97 @@
+.ProductsNavbarWidget {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--padding-navbar);
+  gap: var(--margin-divider);
+  width: 100%;
+  max-width: 1920px;
+  height: 105px;
+  background: var(--color-bg-main);
+  border-radius: var(--radius-navbar);
+  box-shadow: var(--shadow-navbar);
+  flex: none;
+  margin-bottom: var(--gap-card);
+}
+
+.ProductsNavbarWidget__Logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: var(--gap-navbar-logo);
+  flex: none;
+}
+
+.ProductsNavbarWidget__Title {
+  font-family: 'Cairo', var(--font-family);
+  font-weight: var(--font-weight-heading);
+  font-size: var(--font-size-navbar-title);
+  line-height: var(--line-height-navbar-title);
+  color: var(--color-text-heading);
+  white-space: nowrap;
+}
+
+.ProductsNavbarWidget__Menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  flex: 1;
+  height: 100px;
+}
+
+.ProductsNavbarWidget__SearchWrap {
+  width: 100%;
+  max-width: 1023px;
+  margin: 0 auto;
+}
+
+.ProductsNavbarWidget__SearchWrap .BaseInput {
+  width: 100%;
+  height: var(--size-search-height);
+  background: var(--color-bg-input);
+  border-radius: var(--radius-s);
+  border: none;
+}
+
+.ProductsNavbarWidget__SearchWrap .BaseInput:focus-within {
+  background: var(--color-bg-input-focus);
+  box-shadow: var(--shadow-input-focus);
+}
+
+@media (max-width: 1600px) {
+  .ProductsNavbarWidget {
+    padding: 0 var(--padding-navbar-sm);
+  }
+  .ProductsNavbarWidget__Menu {
+    gap: var(--gap-navbar-menu-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  .ProductsNavbarWidget {
+    flex-wrap: wrap;
+    height: auto;
+    padding: var(--padding-navbar-mobile);
+    gap: var(--margin-divider);
+  }
+  .ProductsNavbarWidget__Logo {
+    order: 1;
+  }
+  .ProductsNavbarWidget__Menu {
+    order: 3;
+    width: 100%;
+    margin-top: var(--margin-divider);
+    gap: var(--margin-divider);
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .ProductsNavbarWidget__SearchWrap {
+    width: 100%;
+    order: 1;
+    max-width: none;
+  }
+}

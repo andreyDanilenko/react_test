@@ -4,8 +4,9 @@ import { useGetProductsQuery } from '@/features/products/api/productsApi';
 import { DataTable } from '@/shared/ui/DataTable';
 import type { DataTableColumn } from '@/shared/ui/DataTable';
 import { BaseButton, Pagination } from '@/shared/ui';
-import { PlusIcon, RefreshIcon } from '@/shared/ui/icon';
+import { DotsCircleIcon, PlusIcon, RefreshIcon } from '@/shared/ui/icon';
 import { formatPriceParts } from '@/shared/lib';
+import './ProductsTableWidget.css';
 
 const PAGE_SIZE = 10;
 const RATING_LOW_THRESHOLD = 3;
@@ -66,25 +67,36 @@ const productColumns: DataTableColumn<Product>[] = [
 ];
 
 export interface ProductsTableWidgetProps {
+  searchQuery?: string;
+  page?: number;
+  onPageChange?: (page: number) => void;
   onAddProduct?: () => void;
 }
 
-export function ProductsTableWidget({ onAddProduct }: ProductsTableWidgetProps) {
-  const [page, setPage] = useState(1);
+export function ProductsTableWidget({
+  searchQuery = '',
+  page: controlledPage,
+  onPageChange,
+  onAddProduct,
+}: ProductsTableWidgetProps) {
+  const [internalPage, setInternalPage] = useState(1);
+  const page = controlledPage ?? internalPage;
+  const setPage = onPageChange ?? setInternalPage;
+
   const [sortBy, setSortBy] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
 
-  const { data, isLoading, isError, refetch } = useGetProductsQuery({
+  const { data, isLoading, isError, isFetching, refetch } = useGetProductsQuery({
     limit: PAGE_SIZE,
     skip: (page - 1) * PAGE_SIZE,
+    ...(searchQuery.trim() && { q: searchQuery.trim() }),
     ...(sortBy && { sortBy, order: sortOrder }),
   });
 
   const products = data?.products ?? [];
 
   const handleSort = (columnId: string) => {
-    setPage(1);
     if (sortBy === columnId) {
       setSortOrder((o) => (o === 'asc' ? 'desc' : 'asc'));
     } else {
@@ -117,7 +129,7 @@ export function ProductsTableWidget({ onAddProduct }: ProductsTableWidgetProps) 
         className="DataTable__BtnRefresh"
         icon={<RefreshIcon size={22} />}
         onClick={() => refetch()}
-        disabled={isLoading}
+        disabled={isFetching}
         aria-label="Обновить"
       />
       <BaseButton
@@ -144,24 +156,34 @@ export function ProductsTableWidget({ onAddProduct }: ProductsTableWidgetProps) 
 
   const rowActions = () => (
     <>
-      <button type="button" className="DataTable__BtnQuickAdd" aria-label="Быстрое добавление">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <line x1="5" y1="12" x2="19" y2="12" />
-        </svg>
-      </button>
-      <button type="button" className="DataTable__BtnMore" aria-label="Ещё">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="2" />
-          <circle cx="12" cy="6" r="2" />
-          <circle cx="12" cy="18" r="2" />
-        </svg>
-      </button>
+      <BaseButton
+        variant="icon-only"
+        size="md"
+        className="DataTable__RowActionQuickAdd"
+        icon={<PlusIcon size={20} />}
+        aria-label="Быстрое добавление"
+      />
+      <BaseButton
+        variant="icon-transparent"
+        className="DataTable__RowActionMore"
+        icon={<DotsCircleIcon size={26} />}
+        aria-label="Ещё"
+      />
     </>
   );
 
   return (
-    <DataTable<Product>
+    <div className="ProductsTableWidget__Wrap">
+      <div
+        className={`ProductsTableWidget__Overlay ${isFetching ? 'ProductsTableWidget__Overlay--visible' : ''}`}
+        role="status"
+        aria-live="polite"
+        aria-label="Загрузка данных"
+        aria-hidden={!isFetching}
+      >
+        <div className="ProductsTableWidget__Loader" />
+      </div>
+      <DataTable<Product>
       title="Все позиции"
       data={products}
       columns={productColumns}
@@ -181,5 +203,6 @@ export function ProductsTableWidget({ onAddProduct }: ProductsTableWidgetProps) 
       onSort={handleSort}
       rowActions={rowActions}
     />
+    </div>
   );
 }

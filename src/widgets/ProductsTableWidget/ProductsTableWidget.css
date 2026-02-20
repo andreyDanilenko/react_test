@@ -1,0 +1,38 @@
+.ProductsTableWidget__Wrap {
+  position: relative;
+  width: 100%;
+}
+
+.ProductsTableWidget__Overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.ProductsTableWidget__Overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ProductsTableWidget__Loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border-light);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: ProductsTableWidget__spin 0.8s linear infinite;
+}
+
+@keyframes ProductsTableWidget__spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
