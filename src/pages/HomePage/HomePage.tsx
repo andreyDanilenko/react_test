@@ -4,7 +4,6 @@ import './HomePage.css';
 
 const HomePage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  console.log('23');
     
   return (
     <div className="HomePage">
