@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 // exception type for auth/hooks/useAuthRehydration
 import { useAppDispatch } from '@/app/store/hooks';
-import { setAuthFromStorage, setRehydrated } from '@/features/auth/model/authSlice';
+import { setAuthFromStorage, setRehydrated } from '@/features/auth/model';
 import { getPersistedAuthState } from './authStorage';
 
 export function useAuthRehydration(): void {
