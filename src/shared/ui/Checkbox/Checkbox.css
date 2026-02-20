@@ -19,13 +19,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 22px;
-  height: 22px;
   flex-shrink: 0;
   background: var(--color-bg-main);
   border: 1px solid var(--color-text-label);
   border-radius: 4px;
   transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.custom-checkbox.checkbox--sm {
+  width: 18px;
+  height: 18px;
+}
+
+.custom-checkbox.checkbox--md {
+  width: 22px;
+  height: 22px;
+}
+
+.custom-checkbox.checkbox--lg {
+  width: 22px;
+  height: 22px;
 }
 
 .custom-checkbox.checked {

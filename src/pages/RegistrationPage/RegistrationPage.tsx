@@ -3,6 +3,7 @@ import {
   LogoBadge,
   InputGroup,
   BaseButton,
+  Checkbox,
   UserIcon,
   LockIcon,
   EyeIcon,
@@ -73,12 +74,11 @@ const RegistrationPage: React.FC = () => {
             />
 
             <label className="RegistrationPage__Remember">
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={rememberMe}
+                size='sm'
                 onChange={(e) => setRememberMe(e.target.checked)}
-                className="RegistrationPage__RememberCheckbox"
-                aria-describedby="remember-hint"
+                aria-label="Запомнить меня"
               />
               <span className="RegistrationPage__RememberLabel">Запомнить меня</span>
             </label>

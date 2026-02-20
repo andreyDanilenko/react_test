@@ -7,6 +7,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   label,
   disabled = false,
+  size = 'lg',
   'aria-label': ariaLabel,
   id,
   className = '',
@@ -36,7 +37,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         className="hidden-checkbox"
         aria-label={ariaLabel}
       />
-      <span className={`custom-checkbox ${checked ? 'checked' : ''}`} />
+      <span className={`custom-checkbox checkbox--${size} ${checked ? 'checked' : ''}`} />
       {label != null && label !== '' && <span className="checkbox-label">{label}</span>}
     </label>
   );
