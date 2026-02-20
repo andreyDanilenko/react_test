@@ -103,6 +103,7 @@
     font-size: var(--font-size-divider);
     line-height: var(--line-height-base);
     color: var(--color-text-extra-light);
+    margin: 4px 0;
 }
 
 .RegistrationPage__RememberCheckbox {
@@ -123,21 +124,13 @@
     color: var(--color-text-muted);
 }
 
-.RegistrationPage__Submit {
-    margin-top: 10px;
-    height: 54px;
-    background: var(--button-gradient), var(--button-bg-color);
-    border: 1px solid var(--button-border-color);
-    box-shadow: var(--button-shadow);
-    border-radius: var(--radius-m);
-}
 
 .RegistrationPage__Divider {
     display: flex;
     align-items: center;
     width: 100%;
     gap: 10px;
-    margin: var(--margin-divider) 0;
+    margin-bottom: var(--margin-divider);
 }
 
 .RegistrationPage__DividerLine {

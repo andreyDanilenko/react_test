@@ -7,7 +7,6 @@
   width: 100%;
   max-width: 1920px;
   background: var(--color-bg-main);
-  border-radius: var(--radius-m);
   box-shadow: var(--shadow-card);
 }
 
@@ -249,6 +248,7 @@
   font-size: 16px;
   color: var(--color-text-heading);
   display: block;
+  min-width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -258,6 +258,11 @@
   font-family: 'Cairo', var(--font-family);
   font-size: 14px;
   color: var(--color-text-label);
+  display: block;
+  min-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .DataTable__RowActions {
@@ -296,8 +301,6 @@
   align-items: center;
   width: 100%;
   min-height: 52px;
-  padding: 11px 0 0;
-  border-top: 1px solid var(--color-border-light);
 }
 
 @media (max-width: 768px) {

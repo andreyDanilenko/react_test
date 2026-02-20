@@ -86,6 +86,7 @@ const RegistrationPage: React.FC = () => {
             <BaseButton
               type="submit"
               variant="primary"
+              size="lg"
               hasBorder
               className="RegistrationPage__Submit"
             >
@@ -100,7 +101,7 @@ const RegistrationPage: React.FC = () => {
 
             <p className="RegistrationPage__Footer">
               <a href="#">
-                Уже есть аккаунт? <span>Войти</span>
+                Нет аккаунта? <span>Создать</span>
               </a>
             </p>
           </form>

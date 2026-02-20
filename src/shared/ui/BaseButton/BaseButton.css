@@ -25,7 +25,16 @@
 }
 
 .BaseButton.btn--primary.btn--md {
+    height: 42px;
+    min-height: 42px;
     font-size: 14px;
+}
+
+.BaseButton.btn--primary.btn--lg {
+    height: 54px;
+    min-height: 54px;
+    font-size: 18px;
+    border-radius: 12px;
 }
 
 .btn--secondary {
@@ -122,5 +131,4 @@
 }
 
 .btn--sm { font-size: 14px; padding: 8px 12px; }
-.btn--md { font-size: var(--button-font-size); }
-.btn--lg { font-size: 20px; padding: 20px; }
+.btn--lg .btn__text { letter-spacing: 0.02em; }

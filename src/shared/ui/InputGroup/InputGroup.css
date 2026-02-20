@@ -1,4 +1,5 @@
 .InputGroup {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--gap-small);
@@ -13,8 +14,11 @@
 }
 
 .InputGroup__Error {
-    font-size: 14px;
+    position: absolute;
+    font-size: 10px;
+    bottom: -16px;
+    left: 8px;
     line-height: var(--line-height-base);
-    color: #c0392b;
+    color: var(--color-error);
     margin: 0;
 }
